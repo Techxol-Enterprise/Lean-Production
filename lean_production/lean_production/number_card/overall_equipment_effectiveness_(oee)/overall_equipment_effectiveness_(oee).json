@@ -1,5 +1,6 @@
 {
  "aggregate_function_based_on": "good_qty",
+ "color": "#0284c7",
  "creation": "2026-09-12 16:19:31.717505",
  "docstatus": 0,
  "doctype": "Number Card",
@@ -11,7 +12,7 @@
  "is_standard": 1,
  "label": "Overall Equipment Effectiveness (OEE)",
  "method": "lean_production.lean_production.dashboard_utils.get_oee",
- "modified": "2026-09-12 18:31:22.600784",
+ "modified": "2026-09-13 03:05:36.790756",
  "modified_by": "Administrator",
  "module": "Lean Production",
  "name": "Overall Equipment Effectiveness (OEE)",

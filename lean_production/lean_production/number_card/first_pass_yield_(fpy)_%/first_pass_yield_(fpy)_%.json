@@ -1,5 +1,6 @@
 {
  "aggregate_function_based_on": "good_qty",
+ "color": "#059669",
  "creation": "2026-09-12 16:19:31.715299",
  "docstatus": 0,
  "doctype": "Number Card",
@@ -11,7 +12,7 @@
  "is_standard": 1,
  "label": "First Pass Yield (FPY) %",
  "method": "lean_production.lean_production.dashboard_utils.get_fpy",
- "modified": "2026-09-12 18:31:22.598877",
+ "modified": "2026-09-13 03:05:36.787587",
  "modified_by": "Administrator",
  "module": "Lean Production",
  "name": "First Pass Yield (FPY) %",

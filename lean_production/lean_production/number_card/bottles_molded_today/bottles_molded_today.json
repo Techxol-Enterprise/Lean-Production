@@ -1,5 +1,6 @@
 {
  "aggregate_function_based_on": "good_qty",
+ "color": "#2563eb",
  "creation": "2026-09-12 16:19:31.703703",
  "docstatus": 0,
  "doctype": "Number Card",
@@ -9,8 +10,8 @@
  "idx": 0,
  "is_public": 0,
  "is_standard": 1,
- "label": "Bottles Molded Today",
- "modified": "2026-09-12 18:31:22.576271",
+ "label": "Bottles Molded [Units]",
+ "modified": "2026-09-13 03:05:36.749771",
  "modified_by": "Administrator",
  "module": "Lean Production",
  "name": "Bottles Molded Today",

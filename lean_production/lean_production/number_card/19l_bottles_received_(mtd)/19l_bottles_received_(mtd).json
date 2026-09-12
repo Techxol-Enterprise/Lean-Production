@@ -1,5 +1,6 @@
 {
  "aggregate_function_based_on": "empty_bottles_received",
+ "color": "#9333ea",
  "creation": "2026-09-12 16:19:31.713110",
  "docstatus": 0,
  "doctype": "Number Card",
@@ -9,8 +10,8 @@
  "idx": 0,
  "is_public": 0,
  "is_standard": 1,
- "label": "19L Bottles Received (MTD)",
- "modified": "2026-09-12 18:31:22.596754",
+ "label": "19L Returned [Bottles]",
+ "modified": "2026-09-13 03:05:36.784918",
  "modified_by": "Administrator",
  "module": "Lean Production",
  "name": "19L Bottles Received (MTD)",

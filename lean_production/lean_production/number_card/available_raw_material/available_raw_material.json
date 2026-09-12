@@ -1,5 +1,6 @@
 {
  "aggregate_function_based_on": "actual_qty",
+ "color": "#0d9488",
  "creation": "2026-09-12 17:04:10.387832",
  "docstatus": 0,
  "doctype": "Number Card",
@@ -9,8 +10,8 @@
  "idx": 0,
  "is_public": 0,
  "is_standard": 1,
- "label": "Available Raw Material",
- "modified": "2026-09-12 18:31:22.609530",
+ "label": "Raw Materials [Units]",
+ "modified": "2026-09-13 03:05:36.777810",
  "modified_by": "Administrator",
  "module": "Lean Production",
  "name": "Available Raw Material",

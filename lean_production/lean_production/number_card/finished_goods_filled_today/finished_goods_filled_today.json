@@ -1,5 +1,6 @@
 {
  "aggregate_function_based_on": "good_qty",
+ "color": "#4f46e5",
  "creation": "2026-09-12 16:19:31.708348",
  "docstatus": 0,
  "doctype": "Number Card",
@@ -9,8 +10,8 @@
  "idx": 0,
  "is_public": 0,
  "is_standard": 1,
- "label": "Finished Goods Filled Today",
- "modified": "2026-09-12 18:31:22.586894",
+ "label": "Finished Goods [Cartons]",
+ "modified": "2026-09-13 03:05:36.761235",
  "modified_by": "Administrator",
  "module": "Lean Production",
  "name": "Finished Goods Filled Today",

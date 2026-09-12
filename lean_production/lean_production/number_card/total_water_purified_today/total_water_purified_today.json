@@ -1,5 +1,6 @@
 {
  "aggregate_function_based_on": "good_qty",
+ "color": "#0284c7",
  "creation": "2026-09-12 16:19:31.669510",
  "docstatus": 0,
  "doctype": "Number Card",
@@ -9,8 +10,8 @@
  "idx": 0,
  "is_public": 0,
  "is_standard": 1,
- "label": "Total Water Purified Today",
- "modified": "2026-09-12 18:31:22.498937",
+ "label": "Water Purified [Liters]",
+ "modified": "2026-09-13 03:05:36.696493",
  "modified_by": "Administrator",
  "module": "Lean Production",
  "name": "Total Water Purified Today",

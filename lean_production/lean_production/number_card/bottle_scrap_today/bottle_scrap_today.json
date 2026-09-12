@@ -1,5 +1,6 @@
 {
  "aggregate_function_based_on": "scrap_qty",
+ "color": "#ef4444",
  "creation": "2026-09-12 16:19:31.706507",
  "docstatus": 0,
  "doctype": "Number Card",
@@ -9,8 +10,8 @@
  "idx": 0,
  "is_public": 0,
  "is_standard": 1,
- "label": "Bottle Scrap Today",
- "modified": "2026-09-12 18:31:22.583857",
+ "label": "Molding Defects [Bottles]",
+ "modified": "2026-09-13 03:05:36.770501",
  "modified_by": "Administrator",
  "module": "Lean Production",
  "name": "Bottle Scrap Today",

@@ -1,5 +1,6 @@
 {
  "aggregate_function_based_on": "actual_qty",
+ "color": "#10b981",
  "creation": "2026-09-12 17:04:10.383785",
  "docstatus": 0,
  "doctype": "Number Card",
@@ -9,8 +10,8 @@
  "idx": 0,
  "is_public": 0,
  "is_standard": 1,
- "label": "Finished Goods Current Stock",
- "modified": "2026-09-12 18:31:22.602677",
+ "label": "FG Stock [Cartons]",
+ "modified": "2026-09-13 03:05:36.773103",
  "modified_by": "Administrator",
  "module": "Lean Production",
  "name": "Finished Goods Current Stock",
