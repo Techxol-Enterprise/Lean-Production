@@ -353,19 +353,8 @@ def setup_workspace(card_names, chart_names):
     ws.icon = "droplet"
     ws.indicator_color = "blue"
 
-    # Define the 5 standard shortcuts
-    shortcuts = [
-        {"type": "DocType", "link_to": "Water Purification Entry", "label": "Water Purification Entry", "doc_view": "List"},
-        {"type": "DocType", "link_to": "Blow Molding Entry", "label": "Blow Molding Entry", "doc_view": "List"},
-        {"type": "DocType", "link_to": "Filling Entry", "label": "Filling Entry", "doc_view": "List"},
-        {"type": "DocType", "link_to": "Customer Bottle Ledger", "label": "Customer Bottle Ledger", "doc_view": "List"},
-        {"type": "Report", "link_to": "Bottles with Customers", "label": "Bottles with Customers"},
-    ]
-
-    # Populate child tables cleanly
+    # Shortcuts omitted per user preference
     ws.set("shortcuts", [])
-    for sc in shortcuts:
-        ws.append("shortcuts", sc)
 
     ws.set("number_cards", [])
     for c in card_names:
@@ -407,15 +396,6 @@ def setup_workspace(card_names, chart_names):
         {"id": "ch_indirect_exp", "type": "chart", "data": {"chart_name": "Monthly Indirect Expenses", "col": 6}},
         {"id": "ch_bottle_movement", "type": "chart", "data": {"chart_name": "Bottle Ledger Movement", "col": 6}},
         {"id": "ch_otif_trend", "type": "chart", "data": {"chart_name": "Delivery OTIF Trend", "col": 6}},
-
-        {"id": "hdr_mfg_shortcuts", "type": "header", "data": {"text": "<span class=\"h4\"><b>Manufacturing</b></span>", "col": 12}},
-        {"id": "sc_water", "type": "shortcut", "data": {"shortcut_name": "Water Purification Entry", "col": 4}},
-        {"id": "sc_blow", "type": "shortcut", "data": {"shortcut_name": "Blow Molding Entry", "col": 4}},
-        {"id": "sc_fill", "type": "shortcut", "data": {"shortcut_name": "Filling Entry", "col": 4}},
-
-        {"id": "hdr_bottle_shortcuts", "type": "header", "data": {"text": "<span class=\"h4\"><b>Bottle Tracking</b></span>", "col": 12}},
-        {"id": "sc_ledger", "type": "shortcut", "data": {"shortcut_name": "Customer Bottle Ledger", "col": 4}},
-        {"id": "sc_report", "type": "shortcut", "data": {"shortcut_name": "Bottles with Customers", "col": 4}},
     ]
 
     ws.content = json.dumps(content_blocks)

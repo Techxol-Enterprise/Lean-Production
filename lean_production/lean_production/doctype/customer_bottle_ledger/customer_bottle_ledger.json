@@ -8,6 +8,7 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "company",
   "customer",
   "posting_date",
   "voucher_type",
@@ -16,6 +17,16 @@
   "empty_bottles_received"
  ],
  "fields": [
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1,
+   "search_index": 1
+  },
   {
    "fieldname": "customer",
    "fieldtype": "Link",

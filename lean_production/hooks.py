@@ -277,6 +277,9 @@ doc_events = {
         "on_submit": "lean_production.stock_automation.create_manufacture_stock_entry",
         "on_cancel": "lean_production.stock_automation.cancel_linked_stock_entry"
     },
+    "Transaction Deletion Record": {
+        "before_submit": "lean_production.lean_production.bottle_tracking.on_transaction_deletion_record_submit"
+    },
     "Filling Entry": {
         "on_submit": "lean_production.stock_automation.create_manufacture_stock_entry",
         "on_cancel": "lean_production.stock_automation.cancel_linked_stock_entry"
