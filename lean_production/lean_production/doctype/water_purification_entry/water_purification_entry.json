@@ -1,0 +1,255 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "autoname": "format:{{YY}}-{{MM}}-{{DD}}-{{###}}",
+ "creation": "2026-09-08 02:25:34.796577",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sec_production_details",
+  "company",
+  "posting_date",
+  "shift",
+  "col_break_details",
+  "operator",
+  "workstation",
+  "batch_no",
+  "sec_production_output",
+  "mineral_water_item",
+  "bom_no",
+  "target_warehouse",
+  "qc_status",
+  "col_break_output",
+  "good_qty",
+  "scrap_qty",
+  "litres_purified",
+  "sec_material_consumption",
+  "materials",
+  "sec_more_info",
+  "stock_entry",
+  "col_break_more",
+  "amended_from",
+  "uom"
+ ],
+ "fields": [
+  {
+   "fieldname": "sec_production_details",
+   "fieldtype": "Section Break",
+   "label": "Production Details",
+   "idx": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1,
+   "idx": 2
+  },
+  {
+   "default": "Today",
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Posting Date",
+   "reqd": 1,
+   "idx": 3
+  },
+  {
+   "fieldname": "shift",
+   "fieldtype": "Select",
+   "label": "Shift",
+   "options": "Morning\nEvening\nNight",
+   "idx": 4
+  },
+  {
+   "fieldname": "col_break_details",
+   "fieldtype": "Column Break",
+   "idx": 5
+  },
+  {
+   "fieldname": "operator",
+   "fieldtype": "Link",
+   "label": "Operator",
+   "options": "Employee",
+   "idx": 6
+  },
+  {
+   "fieldname": "workstation",
+   "fieldtype": "Link",
+   "label": "Workstation",
+   "options": "Workstation",
+   "idx": 7
+  },
+  {
+   "fieldname": "batch_no",
+   "fieldtype": "Data",
+   "label": "Batch No",
+   "idx": 8
+  },
+  {
+   "fieldname": "sec_production_output",
+   "fieldtype": "Section Break",
+   "label": "Production Output",
+   "idx": 9
+  },
+  {
+   "fieldname": "mineral_water_item",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Mineral Water Item (Bulk)",
+   "options": "Item",
+   "reqd": 1,
+   "idx": 10
+  },
+  {
+   "fieldname": "bom_no",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "BOM No",
+   "options": "BOM",
+   "reqd": 1,
+   "idx": 11
+  },
+  {
+   "fieldname": "target_warehouse",
+   "fieldtype": "Link",
+   "label": "Target Warehouse (Bulk Tank)",
+   "options": "Warehouse",
+   "reqd": 1,
+   "idx": 12
+  },
+  {
+   "fieldname": "qc_status",
+   "fieldtype": "Select",
+   "label": "QC Status",
+   "options": "Pass\nFail",
+   "reqd": 1,
+   "idx": 13
+  },
+  {
+   "fieldname": "col_break_output",
+   "fieldtype": "Column Break",
+   "idx": 14
+  },
+  {
+   "fieldname": "good_qty",
+   "fieldtype": "Float",
+   "label": "Good Qty",
+   "reqd": 1,
+   "idx": 15
+  },
+  {
+   "fetch_from": "mineral_water_item.stock_uom",
+   "fieldname": "uom",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "UOM",
+   "idx": 16,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "scrap_qty",
+   "fieldtype": "Float",
+   "label": "Scrap Qty",
+   "idx": 17
+  },
+  {
+   "fieldname": "scrap_uom",
+   "fieldtype": "Data",
+   "label": "UOM",
+   "fetch_from": "mineral_water_item.stock_uom",
+   "in_list_view": 0,
+   "read_only": 1,
+   "idx": 18
+  },
+  {
+   "fieldname": "litres_purified",
+   "fieldtype": "Float",
+   "hidden": 1,
+   "label": "Litres Purified",
+   "read_only": 1,
+   "idx": 19
+  },
+  {
+   "fieldname": "sec_material_consumption",
+   "fieldtype": "Section Break",
+   "label": "Material Consumption",
+   "idx": 20
+  },
+  {
+   "fieldname": "materials",
+   "fieldtype": "Table",
+   "label": "Material Consumption",
+   "options": "Lean Material Consumption",
+   "idx": 21
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "sec_more_info",
+   "fieldtype": "Section Break",
+   "label": "More Information",
+   "idx": 22
+  },
+  {
+   "fieldname": "stock_entry",
+   "fieldtype": "Link",
+   "label": "Linked Stock Entry",
+   "no_copy": 1,
+   "options": "Stock Entry",
+   "read_only": 1,
+   "idx": 23
+  },
+  {
+   "fieldname": "col_break_more",
+   "fieldtype": "Column Break",
+   "idx": 24
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Water Purification Entry",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1,
+   "idx": 25
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-09-10 03:29:04.419531",
+ "modified_by": "Administrator",
+ "module": "Lean Production",
+ "name": "Water Purification Entry",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

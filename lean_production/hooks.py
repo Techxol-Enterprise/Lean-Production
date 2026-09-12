@@ -262,3 +262,29 @@ app_license = "mit"
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
 
+
+doc_events = {
+    
+    "Sales Invoice": {
+        "on_submit": "lean_production.lean_production.bottle_tracking.create_bottle_ledger_entry",
+        "on_cancel": "lean_production.lean_production.bottle_tracking.cancel_bottle_ledger_entry"
+    },
+    "Water Purification Entry": {
+        "on_submit": "lean_production.stock_automation.create_manufacture_stock_entry",
+        "on_cancel": "lean_production.stock_automation.cancel_linked_stock_entry"
+    },
+    "Blow Molding Entry": {
+        "on_submit": "lean_production.stock_automation.create_manufacture_stock_entry",
+        "on_cancel": "lean_production.stock_automation.cancel_linked_stock_entry"
+    },
+    "Filling Entry": {
+        "on_submit": "lean_production.stock_automation.create_manufacture_stock_entry",
+        "on_cancel": "lean_production.stock_automation.cancel_linked_stock_entry"
+    }
+}
+
+
+
+after_install = "lean_production.install.after_install"
+
+app_include_js = "/assets/lean_production/js/help_menu.js"
