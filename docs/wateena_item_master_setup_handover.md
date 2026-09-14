@@ -10,7 +10,7 @@
 | # | Item Code | Item Name | Item Group | Stock UOM | Stock Item | Purchase Item | Sales Item | Valuation Rate | UOM Conversions | Disabled |
 |:---:|:---|:---|:---|:---:|:---:|:---:|:---:|:---:|:---|:---:|
 | 1 | `19L-BOTTLE-DEPOSIT` | 19L Bottle Security Deposit | Services | Nos | No | Yes | Yes | 0.00 | Nos (1.0) | No |
-| 2 | `CHEM-ANTISCALE` | RO Antiscalant Powder | Chemicals & Minerals | Kg | Yes | Yes | No | 0.00 | Kg (1.0), Gram (0.001) | No |
+| 2 | `CHEM-ANTISCALE` | RO Antiscalant Liquid | Chemicals & Minerals | Litre | Yes | Yes | No | 0.00 | Litre (1.0) | No |
 | 3 | `FG-19L-REFILL` | Wateena 19L (Refill) | Finished Goods | Nos | Yes | Yes | Yes | 0.00 | Nos (1.0) | No |
 | 4 | `FG-WATER-0.5L-12` | Wateena Water - 500ml x 12 Pack | Finished Goods | Pack | Yes | No | Yes | 0.00 | Pack (1.0) | No |
 | 5 | `FG-WATER-1.5L-06` | Wateena Water - 1.5L x 6 Pack | Finished Goods | Pack | Yes | No | Yes | 0.00 | Pack (1.0) | No |
@@ -58,8 +58,8 @@
   * Stock UOM: `Gram` | Purchase UOM: `Kg` (`1 Kg = 1000 Grams`)
 * **`MIN-CALCIUM`**: Calcium Mineral Salt
   * Stock UOM: `Gram` | Purchase UOM: `Kg` (`1 Kg = 1000 Grams`)
-* **`CHEM-ANTISCALE`**: RO Antiscalant Powder
-  * Stock UOM: `Kg` | Purchase / Alt UOM: `Gram` (`1 Gram = 0.001 Kg`)
+* **`CHEM-ANTISCALE`**: RO Antiscalant Liquid
+  * Stock UOM: `Litre` | Purchase UOM: `Litre` (`1 Litre = 1.0 Litre`)
 
 ### C. Intermediate / Semi-Finished Goods (INT)
 * **`INT-BULK-WATER`**: Purified Mineral Water (Bulk output of RO Purification)
