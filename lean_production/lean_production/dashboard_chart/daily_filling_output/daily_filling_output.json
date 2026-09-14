@@ -3,6 +3,7 @@
  "chart_type": "Custom",
  "color": "#4f46e5",
  "creation": "2026-09-13 13:52:32.467266",
+ "custom_options": "{\"barOptions\": {\"stacked\": 1}, \"colors\": [\"#2b82e8\", \"#ff78a5\", \"#7a42f5\", \"#10b981\", \"#f59e0b\", \"#06b6d4\", \"#ec4899\", \"#8b5cf6\", \"#14b8a6\", \"#f97316\"]}",
  "docstatus": 0,
  "doctype": "Dashboard Chart",
  "filters_json": "[]",
@@ -10,6 +11,7 @@
  "idx": 0,
  "is_public": 1,
  "is_standard": 1,
+ "last_synced_on": "2026-09-14 15:17:30.651369",
  "modified": "2026-09-13 13:52:32.467266",
  "modified_by": "Administrator",
  "module": "Lean Production",
@@ -24,6 +26,5 @@
  "timespan": "Last Month",
  "type": "Bar",
  "use_report_chart": 0,
- "y_axis": [],
- "custom_options": "{\"barOptions\": {\"stacked\": 1}, \"colors\": [\"#2b82e8\", \"#ff78a5\", \"#7a42f5\", \"#10b981\", \"#f59e0b\", \"#06b6d4\", \"#ec4899\", \"#8b5cf6\", \"#14b8a6\", \"#f97316\"]}"
+ "y_axis": []
 }

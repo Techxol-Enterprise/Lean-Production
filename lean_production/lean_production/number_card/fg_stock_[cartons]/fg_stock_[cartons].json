@@ -14,7 +14,7 @@
  "modified": "2026-09-13 03:05:36.773103",
  "modified_by": "Administrator",
  "module": "Lean Production",
- "name": "Finished Goods Current Stock",
+ "name": "FG Stock [Cartons]",
  "owner": "Administrator",
  "report_function": "Sum",
  "show_full_number": 0,

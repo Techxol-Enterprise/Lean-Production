@@ -14,7 +14,7 @@
  "modified": "2026-09-13 03:05:36.696493",
  "modified_by": "Administrator",
  "module": "Lean Production",
- "name": "Total Water Purified Today",
+ "name": "Water Purified [Liters]",
  "owner": "Administrator",
  "report_function": "Sum",
  "show_full_number": 0,
