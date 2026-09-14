@@ -1,6 +1,10 @@
 import frappe
+from lean_production.setup_item_groups import setup_lean_item_groups
 
 def after_install():
+    # 0. Provision and align Lean Production Item Group hierarchy
+    setup_lean_item_groups()
+
     # Attempt to find the default company or the first company
     company = frappe.db.get_single_value("Global Defaults", "default_company")
     if not company:
