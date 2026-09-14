@@ -2,43 +2,55 @@
  "app": "lean_production",
  "charts": [
   {
-   "chart_name": "Daily Water Purification Trend"
+   "chart_name": "Daily Water Purification [Liters]",
+   "label": "Daily Water Purification [Liters]"
   },
   {
-   "chart_name": "Blow Molding Quality (Good vs Scrap)"
+   "chart_name": "Blow Molding Output [Units]",
+   "label": "Blow Molding Output [Units]"
   },
   {
-   "chart_name": "Daily Filling Output"
+   "chart_name": "Daily Filling Output",
+   "label": "Daily Filling Output"
   },
   {
-   "chart_name": "Monthly Production by Product"
+   "chart_name": "Monthly Production [Cartons]",
+   "label": "Monthly Production [Cartons]"
   },
   {
-   "chart_name": "Bottle Ledger Movement"
+   "chart_name": "19L Bottle Movements [Bottles]",
+   "label": "19L Bottle Movements [Bottles]"
   },
   {
-   "chart_name": "Monthly Sales by Product"
+   "chart_name": "Monthly Sales [PKR]",
+   "label": "Monthly Sales [PKR]"
   },
   {
-   "chart_name": "Cash & Bank Balances"
+   "chart_name": "Cash & Bank Balances [PKR]",
+   "label": "Cash & Bank Balances [PKR]"
   },
   {
-   "chart_name": "Monthly Indirect Expenses"
+   "chart_name": "Monthly Indirect Expenses [PKR]",
+   "label": "Monthly Indirect Expenses [PKR]"
   },
   {
-   "chart_name": "Payments vs Receivables"
+   "chart_name": "Payments vs Receivables [PKR]",
+   "label": "Payments vs Receivables [PKR]"
   },
   {
-   "chart_name": "Delivery OTIF Trend"
+   "chart_name": "Delivery OTIF Reliability [%]",
+   "label": "Delivery OTIF Reliability [%]"
   },
   {
-   "chart_name": "Downtime Root Cause Analysis"
+   "chart_name": "Downtime Frequency by Workstation [Events]",
+   "label": "Downtime Frequency by Workstation [Events]"
   },
   {
-   "chart_name": "Purification QC Status"
+   "chart_name": "Purification QC Batches [Pass vs Fail]",
+   "label": "Purification QC Batches [Pass vs Fail]"
   }
  ],
- "content": "[{\"id\": \"hdr_throughput\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Daily Production Throughput (Today)</b></span>\", \"col\": 12}}, {\"id\": \"nc_water_today\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Total Water Purified Today\", \"col\": 4}}, {\"id\": \"nc_bottles_today\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Bottles Molded Today\", \"col\": 4}}, {\"id\": \"nc_fg_today\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Finished Goods Filled Today\", \"col\": 4}}, {\"id\": \"hdr_quality_stock\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Quality Loss & Finished Stock</b></span>\", \"col\": 12}}, {\"id\": \"nc_water_scrap\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Water Purified Scrap Today\", \"col\": 4}}, {\"id\": \"nc_bottle_scrap\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Bottle Scrap Today\", \"col\": 4}}, {\"id\": \"nc_fg_stock\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Finished Goods Current Stock\", \"col\": 4}}, {\"id\": \"hdr_raw_fleet\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Raw Material Buffer & 19L Fleet Assets</b></span>\", \"col\": 12}}, {\"id\": \"nc_raw_material\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Available Raw Material\", \"col\": 4}}, {\"id\": \"nc_19l_delivered\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"19L Bottles Delivered (MTD)\", \"col\": 4}}, {\"id\": \"nc_19l_received\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"19L Bottles Received (MTD)\", \"col\": 4}}, {\"id\": \"hdr_lean\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Lean Performance Metrics</b></span>\", \"col\": 12}}, {\"id\": \"nc_fpy\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"First Pass Yield (FPY) %\", \"col\": 6}}, {\"id\": \"nc_oee\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Overall Equipment Effectiveness (OEE)\", \"col\": 6}}, {\"id\": \"hdr_trends\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Production Trends</b></span>\", \"col\": 12}}, {\"id\": \"ch_water_trend\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Daily Water Purification Trend\", \"col\": 12}}, {\"id\": \"ch_blow_quality\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Blow Molding Quality (Good vs Scrap)\", \"col\": 12}}, {\"id\": \"ch_daily_filling\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Daily Filling Output\", \"col\": 12}}, {\"id\": \"ch_monthly_prod\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Monthly Production by Product\", \"col\": 12}}, {\"id\": \"ch_purification_qc\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Purification QC Status\", \"col\": 6}}, {\"id\": \"ch_downtime_rca\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Downtime Root Cause Analysis\", \"col\": 6}}, {\"id\": \"hdr_financial\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Financial & Logistics</b></span>\", \"col\": 12}}, {\"id\": \"ch_payments_rec\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Payments vs Receivables\", \"col\": 6}}, {\"id\": \"ch_cash_bank\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Cash & Bank Balances\", \"col\": 6}}, {\"id\": \"ch_monthly_sales\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Monthly Sales by Product\", \"col\": 6}}, {\"id\": \"ch_indirect_exp\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Monthly Indirect Expenses\", \"col\": 6}}, {\"id\": \"ch_bottle_movement\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Bottle Ledger Movement\", \"col\": 6}}, {\"id\": \"ch_otif_trend\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Delivery OTIF Trend\", \"col\": 6}}]",
+ "content": "[{\"id\": \"hdr_throughput\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Daily Production Throughput (Today)</b></span>\", \"col\": 12}}, {\"id\": \"nc_water_today\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Water Purified [Liters]\", \"col\": 4}}, {\"id\": \"nc_bottles_today\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Bottles Molded [Units]\", \"col\": 4}}, {\"id\": \"nc_fg_today\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Finished Goods [Cartons]\", \"col\": 4}}, {\"id\": \"hdr_quality_stock\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Quality Loss & Finished Stock</b></span>\", \"col\": 12}}, {\"id\": \"nc_water_scrap\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Water Loss [Liters]\", \"col\": 4}}, {\"id\": \"nc_bottle_scrap\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Molding Defects [Bottles]\", \"col\": 4}}, {\"id\": \"nc_fg_stock\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"FG Stock [Cartons]\", \"col\": 4}}, {\"id\": \"hdr_raw_fleet\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Raw Material Buffer & 19L Fleet Assets</b></span>\", \"col\": 12}}, {\"id\": \"nc_raw_material\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Raw Materials [Units]\", \"col\": 4}}, {\"id\": \"nc_19l_delivered\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"19L Dispatched [Bottles]\", \"col\": 4}}, {\"id\": \"nc_19l_received\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"19L Returned [Bottles]\", \"col\": 4}}, {\"id\": \"hdr_lean\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Lean Performance Metrics</b></span>\", \"col\": 12}}, {\"id\": \"nc_fpy\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"First Pass Yield (FPY) %\", \"col\": 6}}, {\"id\": \"nc_oee\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Overall Equipment Effectiveness (OEE)\", \"col\": 6}}, {\"id\": \"hdr_trends\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Production Trends</b></span>\", \"col\": 12}}, {\"id\": \"ch_water_trend\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Daily Water Purification [Liters]\", \"col\": 12}}, {\"id\": \"ch_blow_quality\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Blow Molding Output [Units]\", \"col\": 12}}, {\"id\": \"ch_daily_filling\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Daily Filling Output\", \"col\": 12}}, {\"id\": \"ch_monthly_prod\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Monthly Production [Cartons]\", \"col\": 12}}, {\"id\": \"ch_purification_qc\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Purification QC Batches [Pass vs Fail]\", \"col\": 6}}, {\"id\": \"ch_downtime_rca\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Downtime Frequency by Workstation [Events]\", \"col\": 6}}, {\"id\": \"hdr_financial\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Financial & Logistics</b></span>\", \"col\": 12}}, {\"id\": \"ch_payments_rec\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Payments vs Receivables [PKR]\", \"col\": 6}}, {\"id\": \"ch_cash_bank\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Cash & Bank Balances [PKR]\", \"col\": 6}}, {\"id\": \"ch_monthly_sales\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Monthly Sales [PKR]\", \"col\": 6}}, {\"id\": \"ch_indirect_exp\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Monthly Indirect Expenses [PKR]\", \"col\": 6}}, {\"id\": \"ch_bottle_movement\", \"type\": \"chart\", \"data\": {\"chart_name\": \"19L Bottle Movements [Bottles]\", \"col\": 6}}, {\"id\": \"ch_otif_trend\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Delivery OTIF Reliability [%]\", \"col\": 6}}]",
  "creation": "2026-09-11 01:07:23.910807",
  "custom_blocks": [],
  "docstatus": 0,
@@ -51,43 +63,54 @@
  "label": "Lean Production",
  "link_type": "DocType",
  "links": [],
- "modified": "2026-09-13 03:05:36.822897",
+ "modified": "2026-09-13 13:21:45.033723",
  "modified_by": "Administrator",
  "module": "Lean Production",
  "name": "Lean Production",
  "number_cards": [
   {
-   "number_card_name": "Total Water Purified Today"
+   "label": "Water Purified [Liters]",
+   "number_card_name": "Water Purified [Liters]"
   },
   {
-   "number_card_name": "Water Purified Scrap Today"
+   "label": "Water Loss [Liters]",
+   "number_card_name": "Water Loss [Liters]"
   },
   {
-   "number_card_name": "Bottles Molded Today"
+   "label": "Bottles Molded [Units]",
+   "number_card_name": "Bottles Molded [Units]"
   },
   {
-   "number_card_name": "Bottle Scrap Today"
+   "label": "Molding Defects [Bottles]",
+   "number_card_name": "Molding Defects [Bottles]"
   },
   {
-   "number_card_name": "Finished Goods Filled Today"
+   "label": "Finished Goods [Cartons]",
+   "number_card_name": "Finished Goods [Cartons]"
   },
   {
-   "number_card_name": "19L Bottles Delivered (MTD)"
+   "label": "19L Dispatched [Bottles]",
+   "number_card_name": "19L Dispatched [Bottles]"
   },
   {
-   "number_card_name": "19L Bottles Received (MTD)"
+   "label": "19L Returned [Bottles]",
+   "number_card_name": "19L Returned [Bottles]"
   },
   {
+   "label": "First Pass Yield (FPY) %",
    "number_card_name": "First Pass Yield (FPY) %"
   },
   {
+   "label": "Overall Equipment Effectiveness (OEE)",
    "number_card_name": "Overall Equipment Effectiveness (OEE)"
   },
   {
-   "number_card_name": "Finished Goods Current Stock"
+   "label": "FG Stock [Cartons]",
+   "number_card_name": "FG Stock [Cartons]"
   },
   {
-   "number_card_name": "Available Raw Material"
+   "label": "Raw Materials [Units]",
+   "number_card_name": "Raw Materials [Units]"
   }
  ],
  "owner": "Administrator",
