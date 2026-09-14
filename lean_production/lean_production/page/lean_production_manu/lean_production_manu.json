@@ -10,7 +10,14 @@
  "name": "lean-production-manu",
  "owner": "Administrator",
  "page_name": "lean-production-manu",
- "roles": [],
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Lean Production Manager"
+  }
+ ],
  "script": null,
  "standard": "Yes",
  "style": null,

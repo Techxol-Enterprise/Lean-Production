@@ -117,7 +117,14 @@
  "parent_page": "",
  "public": 1,
  "quick_lists": [],
- "roles": [],
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Lean Production Manager"
+  }
+ ],
  "sequence_id": 0.0,
  "shortcuts": [],
  "title": "Lean Production",

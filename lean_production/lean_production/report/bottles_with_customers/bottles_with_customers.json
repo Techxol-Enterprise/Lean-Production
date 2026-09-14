@@ -22,7 +22,14 @@
  "ref_doctype": "Customer Bottle Ledger",
  "report_name": "Bottles with Customers",
  "report_type": "Query Report",
- "roles": [],
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Lean Production Manager"
+  }
+ ],
  "snapshot_report": 0,
  "timeout": 0
 }

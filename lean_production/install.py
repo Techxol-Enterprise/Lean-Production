@@ -1,9 +1,13 @@
 import frappe
 from lean_production.setup_item_groups import setup_lean_item_groups
+from lean_production.setup_roles import setup_lean_roles
 
 def after_install():
     # 0. Provision and align Lean Production Item Group hierarchy
     setup_lean_item_groups()
+
+    # 1. Provision Lean Production Manager Role and permissions
+    setup_lean_roles()
 
     # Attempt to find the default company or the first company
     company = frappe.db.get_single_value("Global Defaults", "default_company")
