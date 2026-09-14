@@ -1,6 +1,7 @@
 import frappe
 from frappe.utils import flt
 from erpnext.stock.get_item_details import get_conversion_factor
+from erpnext.stock.utils import get_stock_balance
 
 
 class BOMMaterialList(list):
@@ -257,7 +258,137 @@ def create_manufacture_stock_entry(doc, method):
 
     scrap_qty = flt(getattr(doc, "scrap_qty", 0))
 
-    # 5. Initialize Stock Entry
+    # 5. Check Material Availability & Generate Actionable Shortage Error
+    allow_negative_stock = frappe.db.get_single_value("Stock Settings", "allow_negative_stock")
+    consumption_rows = getattr(doc, "materials", None) or getattr(doc, "material_consumption", None) or []
+    
+    if not consumption_rows:
+        # Resolve BOM items for backward compatibility
+        total_batch_qty = good_qty + scrap_qty
+        rm_items = get_bom_items(doc.bom_no, total_batch_qty)
+        rm_item_codes = list({rm["item_code"] for rm in rm_items})
+        item_groups = {
+            d.name: d.item_group
+            for d in frappe.get_all("Item", filters={"name": ["in", rm_item_codes]}, fields=["name", "item_group"])
+        }
+        consumption_rows = []
+        for rm in rm_items:
+            if doc.doctype in ["Water Purification Entry", "Blow Molding Entry"]:
+                s_wh = getattr(doc, "source_warehouse", None)
+                if not s_wh:
+                    abbr = frappe.db.get_value("Company", doc.company, "abbr") or "W"
+                    s_wh = frappe.db.get_value("Warehouse", {"company": doc.company, "warehouse_name": "Stores"}, "name") or f"Stores - {abbr}"
+            elif doc.doctype == "Filling Entry":
+                item_group = item_groups.get(rm["item_code"]) or frappe.db.get_value("Item", rm["item_code"], "item_group")
+                s_wh = getattr(doc, "packaging_warehouse", None)
+                if item_group == "Bulk Purified Water" or rm["item_code"] == "INT-BULK-WATER":
+                    s_wh = getattr(doc, "water_warehouse", None) or s_wh
+                elif item_group == "Empty Bottles" or rm["item_code"].startswith("INT-BTL"):
+                    s_wh = getattr(doc, "bottle_warehouse", None) or s_wh
+                if not s_wh:
+                    abbr = frappe.db.get_value("Company", doc.company, "abbr") or "W"
+                    s_wh = frappe.db.get_value("Warehouse", {"company": doc.company, "warehouse_name": "Stores"}, "name") or f"Stores - {abbr}"
+            consumption_rows.append({
+                "item_code": rm["item_code"],
+                "source_warehouse": s_wh,
+                "required_qty": rm["qty"],
+                "uom": rm["uom"]
+            })
+
+    if not allow_negative_stock and consumption_rows:
+        shortages = []
+        item_codes = list(set([r.get("item_code") if isinstance(r, dict) else getattr(r, "item_code", None) for r in consumption_rows]))
+        items_meta = {
+            d.name: d for d in frappe.get_all(
+                "Item",
+                filters={"name": ["in", item_codes]},
+                fields=["name", "item_name", "stock_uom"]
+            )
+        }
+
+        # Aggregate total required per (item_code, warehouse)
+        req_by_item_wh = {}
+        for row in consumption_rows:
+            i_code = row.get("item_code") if isinstance(row, dict) else getattr(row, "item_code", None)
+            s_wh = row.get("source_warehouse") if isinstance(row, dict) else getattr(row, "source_warehouse", None)
+            r_qty = flt(row.get("required_qty") if isinstance(row, dict) else getattr(row, "required_qty", 0))
+            r_uom = row.get("uom") if isinstance(row, dict) else getattr(row, "uom", None)
+
+            if not i_code or not s_wh or r_qty <= 0:
+                continue
+
+            meta = items_meta.get(i_code) or {}
+            stk_uom = meta.get("stock_uom") or r_uom
+            conv = 1.0
+            if r_uom and stk_uom and r_uom != stk_uom:
+                conv_data = get_conversion_factor(i_code, r_uom)
+                conv = flt(conv_data.get("conversion_factor")) or 1.0
+
+            transfer_qty = r_qty * conv
+            key = (i_code, s_wh)
+            req_by_item_wh[key] = req_by_item_wh.get(key, 0.0) + transfer_qty
+
+        for (i_code, s_wh), total_req in req_by_item_wh.items():
+            avail_stock = get_stock_balance(i_code, s_wh)
+            if avail_stock < total_req:
+                meta = items_meta.get(i_code) or {}
+                stk_uom = meta.get("stock_uom") or ""
+                shortages.append({
+                    "item_code": i_code,
+                    "item_name": meta.get("item_name") or i_code,
+                    "warehouse": s_wh,
+                    "required": total_req,
+                    "available": avail_stock,
+                    "shortage": total_req - avail_stock,
+                    "stock_uom": stk_uom
+                })
+
+        if shortages:
+            rows_html = "".join([
+                f"<tr style='border-bottom: 1px solid var(--border-color, rgba(255,255,255,0.08));'>"
+                f"<td style='padding: 10px 14px; vertical-align: middle;'>"
+                f"<div style='font-weight: 600; color: var(--text-color, #e6edf3);'>{s['item_code']}</div>"
+                f"<div style='font-size: 11px; color: var(--text-muted, #8b949e); margin-top: 2px;'>{s['item_name']}</div>"
+                f"</td>"
+                f"<td style='padding: 10px 14px; text-align: right; vertical-align: middle; color: var(--text-color, #e6edf3); font-variant-numeric: tabular-nums;'>{s['required']:,.2f} {s['stock_uom']}</td>"
+                f"<td style='padding: 10px 14px; text-align: right; vertical-align: middle; color: var(--text-muted, #8b949e); font-variant-numeric: tabular-nums;'>{s['available']:,.2f} {s['stock_uom']}</td>"
+                f"<td style='padding: 10px 14px; text-align: right; vertical-align: middle;'>"
+                f"<span style='display: inline-block; padding: 3px 8px; border-radius: 4px; background: rgba(239, 68, 68, 0.15); color: #f87171; font-weight: 700; font-variant-numeric: tabular-nums;'>-{s['shortage']:,.2f} {s['stock_uom']}</span>"
+                f"</td>"
+                f"<td style='padding: 10px 14px; vertical-align: middle; color: var(--text-color, #e6edf3); font-size: 12px;'>"
+                f"<span style='color: var(--text-muted, #8b949e); margin-right: 4px;'>📍</span>{s['warehouse']}"
+                f"</td>"
+                f"</tr>"
+                for s in shortages
+            ])
+            error_html = (
+                f"<div style='font-family: inherit; margin: 4px 0;'>"
+                f"<div style='background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: 6px; padding: 12px 14px; margin-bottom: 14px;'>"
+                f"<div style='font-weight: 600; color: #f87171; font-size: 13px; margin-bottom: 3px;'>⚠️ Cannot Submit {doc.doctype}</div>"
+                f"<div style='font-size: 12px; color: var(--text-color, #e6edf3); opacity: 0.9;'>The following raw materials have insufficient stock in their assigned source warehouses to complete this batch:</div>"
+                f"</div>"
+                f"<div style='border: 1px solid var(--border-color, #30363d); border-radius: 6px; overflow: hidden; margin-bottom: 14px; background: var(--card-bg, rgba(255,255,255,0.02));'>"
+                f"<table style='width: 100%; border-collapse: collapse; font-size: 12.5px; text-align: left;'>"
+                f"<thead>"
+                f"<tr style='background: var(--table-header-bg, rgba(255,255,255,0.05)); border-bottom: 1px solid var(--border-color, #30363d); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted, #8b949e);'>"
+                f"<th style='padding: 10px 14px; width: 32%;'>Raw Material</th>"
+                f"<th style='padding: 10px 14px; text-align: right; width: 17%;'>Required</th>"
+                f"<th style='padding: 10px 14px; text-align: right; width: 17%;'>Available</th>"
+                f"<th style='padding: 10px 14px; text-align: right; width: 17%;'>Shortage</th>"
+                f"<th style='padding: 10px 14px; width: 17%;'>Source Warehouse</th>"
+                f"</tr>"
+                f"</thead>"
+                f"<tbody>{rows_html}</tbody>"
+                f"</table>"
+                f"</div>"
+                f"<div style='background: rgba(59, 130, 246, 0.08); border-left: 3px solid #3b82f6; border-radius: 4px; padding: 10px 14px; font-size: 12px; line-height: 1.5; color: var(--text-color, #e6edf3);'>"
+                f"<strong>Action Required:</strong> Please receive incoming stock via <strong>Purchase Receipt</strong> or <strong>Stock Entry (Material Receipt)</strong>, initiate a <strong>Material Transfer</strong> to the source warehouse, or reduce the production quantity."
+                f"</div>"
+                f"</div>"
+            )
+            frappe.throw(error_html, title=frappe._("Insufficient Raw Material Stock"))
+
+    # 6. Initialize Stock Entry
     se = frappe.new_doc("Stock Entry")
     se.purpose = "Manufacture"
     se.company = doc.company
@@ -272,9 +403,7 @@ def create_manufacture_stock_entry(doc, method):
         se._precision = frappe._dict()
     se._precision["items"] = frappe._dict(transfer_qty=9, qty=9)
 
-    # 6. Consume Materials from Child Table (or fallback BOM explosion)
-    consumption_rows = getattr(doc, "materials", None) or getattr(doc, "material_consumption", None) or []
-
+    # 7. Consume Materials from Child Table (or fallback BOM explosion)
     if consumption_rows:
         for row in consumption_rows:
             req_qty = flt(row.get("required_qty") if isinstance(row, dict) else getattr(row, "required_qty", 0))
@@ -374,7 +503,7 @@ def create_manufacture_stock_entry(doc, method):
         "stock_uom": fg_uom,
         "conversion_factor": 1.0,
         "transfer_qty": good_qty,
-        "allow_zero_valuation_rate": 0,
+        "allow_zero_valuation_rate": 1,
         "is_finished_item": 1,
         "batch_no": fg_batch
     })
