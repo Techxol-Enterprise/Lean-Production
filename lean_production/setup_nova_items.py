@@ -69,6 +69,12 @@ def run():
         {"code": "RM-LBL-REH-1.5L", "name": "Nova Beverages - Rehydrate Label - 1.5L", "group": "Packaging Materials", "uom": "Nos", "stock": 1, "purchase": 1, "sales": 0},
         {"code": "RM-LBL-HYD-0.5L", "name": "Nova Beverages - Hydrafina Label - 500ml", "group": "Packaging Materials", "uom": "Nos", "stock": 1, "purchase": 1, "sales": 0},
         {"code": "RM-LBL-HYD-1.5L", "name": "Nova Beverages - Hydrafina Label - 1.5L", "group": "Packaging Materials", "uom": "Nos", "stock": 1, "purchase": 1, "sales": 0},
+        {"code": "RM-LBL-REH-19L", "name": "Nova Beverages - Rehydrate Label - 19L", "group": "Packaging Materials", "uom": "Nos", "stock": 1, "purchase": 1, "sales": 0},
+
+        # 19L Dedicated Packaging Components
+        {"code": "RM-CAP-55MM", "name": "55mm Non-Spill Cap (19L)", "group": "Packaging Materials", "uom": "Nos", "stock": 1, "purchase": 1, "sales": 0},
+        {"code": "RM-SEAL-19L", "name": "Heat Shrink Neck Seal - 19L", "group": "Packaging Materials", "uom": "Nos", "stock": 1, "purchase": 1, "sales": 0},
+        {"code": "RM-BAG-19L", "name": "Protective Dust Bag - 19L", "group": "Packaging Materials", "uom": "Nos", "stock": 1, "purchase": 1, "sales": 0},
 
         # Empty Bottles - Rehydrate
         {"code": "INT-BTL-REH-0.5L-13.5G", "name": "Empty PET Bottle - Nova Rehydrate - 500ml (13.5g)", "group": "Empty Bottles", "uom": "Nos", "stock": 1, "purchase": 0, "sales": 0},

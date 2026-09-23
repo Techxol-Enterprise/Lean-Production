@@ -2,7 +2,7 @@
 **Client:** `Nova Beverages`  
 **Site:** `novabeverages.techxol.net` (Local: `erpnext.local`)  
 **Extracted / Generated At:** 2026-09-21  
-**Total Items:** 47  
+**Total Items:** 51  
 **Brands Supported:** Rehydrate (Premium Pure) & Hydrafina (Standard Pure + Economy Mix)
 
 ---
@@ -33,31 +33,35 @@
 | 20 | `RM-LBL-REH-1.5L` | Nova Beverages - Rehydrate Label - 1.5L | Packaging Materials | Nos | Yes | Yes | No | 0.00 | Nos (1.0) | No |
 | 21 | `RM-LBL-HYD-0.5L` | Nova Beverages - Hydrafina Label - 500ml | Packaging Materials | Nos | Yes | Yes | No | 0.00 | Nos (1.0) | No |
 | 22 | `RM-LBL-HYD-1.5L` | Nova Beverages - Hydrafina Label - 1.5L | Packaging Materials | Nos | Yes | Yes | No | 0.00 | Nos (1.0) | No |
-| 23 | `INT-BTL-REH-0.5L-13.5G` | Empty PET Bottle - Nova Rehydrate - 500ml (13.5g) | Empty Bottles | Nos | Yes | No | No | 0.00 | Nos (1.0) | No |
-| 24 | `INT-BTL-REH-0.5L-15G` | Empty PET Bottle - Nova Rehydrate - 500ml (15g) | Empty Bottles | Nos | Yes | No | No | 0.00 | Nos (1.0) | No |
-| 25 | `INT-BTL-REH-1.5L-27G` | Empty PET Bottle - Nova Rehydrate - 1.5L (27g) | Empty Bottles | Nos | Yes | No | No | 0.00 | Nos (1.0) | No |
-| 26 | `INT-BTL-REH-1.5L-30G` | Empty PET Bottle - Nova Rehydrate - 1.5L (30g) | Empty Bottles | Nos | Yes | No | No | 0.00 | Nos (1.0) | No |
-| 27 | `INT-BTL-HYD-PURE-0.5L-13.5G` | Empty PET Bottle - Nova Hydrafina Pure - 500ml (13.5g) | Empty Bottles | Nos | Yes | No | No | 0.00 | Nos (1.0) | No |
-| 28 | `INT-BTL-HYD-PURE-0.5L-15G` | Empty PET Bottle - Nova Hydrafina Pure - 500ml (15g) | Empty Bottles | Nos | Yes | No | No | 0.00 | Nos (1.0) | No |
-| 29 | `INT-BTL-HYD-PURE-1.5L-27G` | Empty PET Bottle - Nova Hydrafina Pure - 1.5L (27g) | Empty Bottles | Nos | Yes | No | No | 0.00 | Nos (1.0) | No |
-| 30 | `INT-BTL-HYD-PURE-1.5L-30G` | Empty PET Bottle - Nova Hydrafina Pure - 1.5L (30g) | Empty Bottles | Nos | Yes | No | No | 0.00 | Nos (1.0) | No |
-| 31 | `INT-BTL-HYD-MIX-0.5L-13.5G` | Empty PET Bottle - Nova Hydrafina Mix - 500ml (13.5g) | Empty Bottles | Nos | Yes | No | No | 0.00 | Nos (1.0) | No |
-| 32 | `INT-BTL-HYD-MIX-0.5L-15G` | Empty PET Bottle - Nova Hydrafina Mix - 500ml (15g) | Empty Bottles | Nos | Yes | No | No | 0.00 | Nos (1.0) | No |
-| 33 | `INT-BTL-HYD-MIX-1.5L-27G` | Empty PET Bottle - Nova Hydrafina Mix - 1.5L (27g) | Empty Bottles | Nos | Yes | No | No | 0.00 | Nos (1.0) | No |
-| 34 | `INT-BTL-HYD-MIX-1.5L-30G` | Empty PET Bottle - Nova Hydrafina Mix - 1.5L (30g) | Empty Bottles | Nos | Yes | No | No | 0.00 | Nos (1.0) | No |
-| 35 | `FG-REH-WATER-0.5L-12-13.5G` | Nova Beverages - Rehydrate Water - PL - 500ml x 12 Pack | Finished Goods | Pack | Yes | No | Yes | 0.00 | Pack (1.0) | No |
-| 36 | `FG-REH-WATER-0.5L-12-15G` | Nova Beverages - Rehydrate Water - PH - 500ml x 12 Pack | Finished Goods | Pack | Yes | No | Yes | 0.00 | Pack (1.0) | No |
-| 37 | `FG-REH-WATER-1.5L-06-27G` | Nova Beverages - Rehydrate Water - PL - 1.5L x 6 Pack | Finished Goods | Pack | Yes | No | Yes | 0.00 | Pack (1.0) | No |
-| 38 | `FG-REH-WATER-1.5L-06-30G` | Nova Beverages - Rehydrate Water - PH - 1.5L x 6 Pack | Finished Goods | Pack | Yes | No | Yes | 0.00 | Pack (1.0) | No |
-| 39 | `FG-REH-19L-REFILL` | Nova Beverages - Rehydrate 19L (Refill) | Finished Goods | Nos | Yes | Yes | Yes | 0.00 | Nos (1.0) | No |
-| 40 | `FG-HYD-WATER-PURE-0.5L-12-13.5G` | Nova Beverages - Hydrafina Water - PL - 500ml x 12 Pack | Finished Goods | Pack | Yes | No | Yes | 0.00 | Pack (1.0) | No |
-| 41 | `FG-HYD-WATER-PURE-0.5L-12-15G` | Nova Beverages - Hydrafina Water - PH - 500ml x 12 Pack | Finished Goods | Pack | Yes | No | Yes | 0.00 | Pack (1.0) | No |
-| 42 | `FG-HYD-WATER-PURE-1.5L-06-27G` | Nova Beverages - Hydrafina Water - PL - 1.5L x 6 Pack | Finished Goods | Pack | Yes | No | Yes | 0.00 | Pack (1.0) | No |
-| 43 | `FG-HYD-WATER-PURE-1.5L-06-30G` | Nova Beverages - Hydrafina Water - PH - 1.5L x 6 Pack | Finished Goods | Pack | Yes | No | Yes | 0.00 | Pack (1.0) | No |
-| 44 | `FG-HYD-WATER-MIX-0.5L-12-13.5G` | Nova Beverages - Hydrafina Water - ML - 500ml x 12 Pack | Finished Goods | Pack | Yes | No | Yes | 0.00 | Pack (1.0) | No |
-| 45 | `FG-HYD-WATER-MIX-0.5L-12-15G` | Nova Beverages - Hydrafina Water - MH - 500ml x 12 Pack | Finished Goods | Pack | Yes | No | Yes | 0.00 | Pack (1.0) | No |
-| 46 | `FG-HYD-WATER-MIX-1.5L-06-27G` | Nova Beverages - Hydrafina Water - ML - 1.5L x 6 Pack | Finished Goods | Pack | Yes | No | Yes | 0.00 | Pack (1.0) | No |
-| 47 | `FG-HYD-WATER-MIX-1.5L-06-30G` | Nova Beverages - Hydrafina Water - MH - 1.5L x 6 Pack | Finished Goods | Pack | Yes | No | Yes | 0.00 | Pack (1.0) | No |
+| 23 | `RM-LBL-REH-19L` | Nova Beverages - Rehydrate Label - 19L | Packaging Materials | Nos | Yes | Yes | No | 0.00 | Nos (1.0) | No |
+| 24 | `RM-CAP-55MM` | 55mm Non-Spill Cap (19L) | Packaging Materials | Nos | Yes | Yes | No | 0.00 | Nos (1.0) | No |
+| 25 | `RM-SEAL-19L` | Heat Shrink Neck Seal - 19L | Packaging Materials | Nos | Yes | Yes | No | 0.00 | Nos (1.0) | No |
+| 26 | `RM-BAG-19L` | Protective Dust Bag - 19L | Packaging Materials | Nos | Yes | Yes | No | 0.00 | Nos (1.0) | No |
+| 27 | `INT-BTL-REH-0.5L-13.5G` | Empty PET Bottle - Nova Rehydrate - 500ml (13.5g) | Empty Bottles | Nos | Yes | No | No | 0.00 | Nos (1.0) | No |
+| 28 | `INT-BTL-REH-0.5L-15G` | Empty PET Bottle - Nova Rehydrate - 500ml (15g) | Empty Bottles | Nos | Yes | No | No | 0.00 | Nos (1.0) | No |
+| 29 | `INT-BTL-REH-1.5L-27G` | Empty PET Bottle - Nova Rehydrate - 1.5L (27g) | Empty Bottles | Nos | Yes | No | No | 0.00 | Nos (1.0) | No |
+| 30 | `INT-BTL-REH-1.5L-30G` | Empty PET Bottle - Nova Rehydrate - 1.5L (30g) | Empty Bottles | Nos | Yes | No | No | 0.00 | Nos (1.0) | No |
+| 31 | `INT-BTL-HYD-PURE-0.5L-13.5G` | Empty PET Bottle - Nova Hydrafina Pure - 500ml (13.5g) | Empty Bottles | Nos | Yes | No | No | 0.00 | Nos (1.0) | No |
+| 32 | `INT-BTL-HYD-PURE-0.5L-15G` | Empty PET Bottle - Nova Hydrafina Pure - 500ml (15g) | Empty Bottles | Nos | Yes | No | No | 0.00 | Nos (1.0) | No |
+| 33 | `INT-BTL-HYD-PURE-1.5L-27G` | Empty PET Bottle - Nova Hydrafina Pure - 1.5L (27g) | Empty Bottles | Nos | Yes | No | No | 0.00 | Nos (1.0) | No |
+| 34 | `INT-BTL-HYD-PURE-1.5L-30G` | Empty PET Bottle - Nova Hydrafina Pure - 1.5L (30g) | Empty Bottles | Nos | Yes | No | No | 0.00 | Nos (1.0) | No |
+| 35 | `INT-BTL-HYD-MIX-0.5L-13.5G` | Empty PET Bottle - Nova Hydrafina Mix - 500ml (13.5g) | Empty Bottles | Nos | Yes | No | No | 0.00 | Nos (1.0) | No |
+| 36 | `INT-BTL-HYD-MIX-0.5L-15G` | Empty PET Bottle - Nova Hydrafina Mix - 500ml (15g) | Empty Bottles | Nos | Yes | No | No | 0.00 | Nos (1.0) | No |
+| 37 | `INT-BTL-HYD-MIX-1.5L-27G` | Empty PET Bottle - Nova Hydrafina Mix - 1.5L (27g) | Empty Bottles | Nos | Yes | No | No | 0.00 | Nos (1.0) | No |
+| 38 | `INT-BTL-HYD-MIX-1.5L-30G` | Empty PET Bottle - Nova Hydrafina Mix - 1.5L (30g) | Empty Bottles | Nos | Yes | No | No | 0.00 | Nos (1.0) | No |
+| 39 | `FG-REH-WATER-0.5L-12-13.5G` | Nova Beverages - Rehydrate Water - PL - 500ml x 12 Pack | Finished Goods | Pack | Yes | No | Yes | 0.00 | Pack (1.0) | No |
+| 40 | `FG-REH-WATER-0.5L-12-15G` | Nova Beverages - Rehydrate Water - PH - 500ml x 12 Pack | Finished Goods | Pack | Yes | No | Yes | 0.00 | Pack (1.0) | No |
+| 41 | `FG-REH-WATER-1.5L-06-27G` | Nova Beverages - Rehydrate Water - PL - 1.5L x 6 Pack | Finished Goods | Pack | Yes | No | Yes | 0.00 | Pack (1.0) | No |
+| 42 | `FG-REH-WATER-1.5L-06-30G` | Nova Beverages - Rehydrate Water - PH - 1.5L x 6 Pack | Finished Goods | Pack | Yes | No | Yes | 0.00 | Pack (1.0) | No |
+| 43 | `FG-REH-19L-REFILL` | Nova Beverages - Rehydrate 19L (Refill) | Finished Goods | Nos | Yes | Yes | Yes | 0.00 | Nos (1.0) | No |
+| 44 | `FG-HYD-WATER-PURE-0.5L-12-13.5G` | Nova Beverages - Hydrafina Water - PL - 500ml x 12 Pack | Finished Goods | Pack | Yes | No | Yes | 0.00 | Pack (1.0) | No |
+| 45 | `FG-HYD-WATER-PURE-0.5L-12-15G` | Nova Beverages - Hydrafina Water - PH - 500ml x 12 Pack | Finished Goods | Pack | Yes | No | Yes | 0.00 | Pack (1.0) | No |
+| 46 | `FG-HYD-WATER-PURE-1.5L-06-27G` | Nova Beverages - Hydrafina Water - PL - 1.5L x 6 Pack | Finished Goods | Pack | Yes | No | Yes | 0.00 | Pack (1.0) | No |
+| 47 | `FG-HYD-WATER-PURE-1.5L-06-30G` | Nova Beverages - Hydrafina Water - PH - 1.5L x 6 Pack | Finished Goods | Pack | Yes | No | Yes | 0.00 | Pack (1.0) | No |
+| 48 | `FG-HYD-WATER-MIX-0.5L-12-13.5G` | Nova Beverages - Hydrafina Water - ML - 500ml x 12 Pack | Finished Goods | Pack | Yes | No | Yes | 0.00 | Pack (1.0) | No |
+| 49 | `FG-HYD-WATER-MIX-0.5L-12-15G` | Nova Beverages - Hydrafina Water - MH - 500ml x 12 Pack | Finished Goods | Pack | Yes | No | Yes | 0.00 | Pack (1.0) | No |
+| 50 | `FG-HYD-WATER-MIX-1.5L-06-27G` | Nova Beverages - Hydrafina Water - ML - 1.5L x 6 Pack | Finished Goods | Pack | Yes | No | Yes | 0.00 | Pack (1.0) | No |
+| 51 | `FG-HYD-WATER-MIX-1.5L-06-30G` | Nova Beverages - Hydrafina Water - MH - 1.5L x 6 Pack | Finished Goods | Pack | Yes | No | Yes | 0.00 | Pack (1.0) | No |
 
 ---
 
@@ -104,6 +108,18 @@
   * Stock UOM: `Nos` | Stock Item: Yes | Purchase Item: Yes
 * **`RM-LBL-HYD-1.5L`**: Nova Beverages - Hydrafina Label - 1.5L
   * Stock UOM: `Nos` | Stock Item: Yes | Purchase Item: Yes
+* **`RM-LBL-REH-19L`**: Nova Beverages - Rehydrate Label - 19L
+  * Stock UOM: `Nos` | Stock Item: Yes | Purchase Item: Yes
+  * Purpose: Brand identification and date collar sticker applied to filled 19L Rehydrate bottles.
+* **`RM-CAP-55MM`**: 55mm Non-Spill Cap (19L)
+  * Stock UOM: `Nos` | Stock Item: Yes | Purchase Item: Yes
+  * Purpose: 55mm commercial non-spill snap-on cap with inner valve for 19L water dispensers.
+* **`RM-SEAL-19L`**: Heat Shrink Neck Seal - 19L
+  * Stock UOM: `Nos` | Stock Item: Yes | Purchase Item: Yes
+  * Purpose: Tamper-evident heat shrink PVC sleeve applied over the 55mm cap and neck.
+* **`RM-BAG-19L`**: Protective Dust Bag - 19L
+  * Stock UOM: `Nos` | Stock Item: Yes | Purchase Item: Yes
+  * Purpose: Polyethylene dust protective cover slipped over filled 19L bottle during transit.
 
 ---
 
@@ -248,6 +264,12 @@ def run():
         {"code": "RM-LBL-REH-1.5L", "name": "Nova Beverages - Rehydrate Label - 1.5L", "group": "Packaging Materials", "uom": "Nos", "stock": 1, "purchase": 1, "sales": 0},
         {"code": "RM-LBL-HYD-0.5L", "name": "Nova Beverages - Hydrafina Label - 500ml", "group": "Packaging Materials", "uom": "Nos", "stock": 1, "purchase": 1, "sales": 0},
         {"code": "RM-LBL-HYD-1.5L", "name": "Nova Beverages - Hydrafina Label - 1.5L", "group": "Packaging Materials", "uom": "Nos", "stock": 1, "purchase": 1, "sales": 0},
+        {"code": "RM-LBL-REH-19L", "name": "Nova Beverages - Rehydrate Label - 19L", "group": "Packaging Materials", "uom": "Nos", "stock": 1, "purchase": 1, "sales": 0},
+
+        # 19L Dedicated Packaging Components
+        {"code": "RM-CAP-55MM", "name": "55mm Non-Spill Cap (19L)", "group": "Packaging Materials", "uom": "Nos", "stock": 1, "purchase": 1, "sales": 0},
+        {"code": "RM-SEAL-19L", "name": "Heat Shrink Neck Seal - 19L", "group": "Packaging Materials", "uom": "Nos", "stock": 1, "purchase": 1, "sales": 0},
+        {"code": "RM-BAG-19L", "name": "Protective Dust Bag - 19L", "group": "Packaging Materials", "uom": "Nos", "stock": 1, "purchase": 1, "sales": 0},
 
         # Empty Bottles - Rehydrate
         {"code": "INT-BTL-REH-0.5L-13.5G", "name": "Empty PET Bottle - Nova Rehydrate - 500ml (13.5g)", "group": "Empty Bottles", "uom": "Nos", "stock": 1, "purchase": 0, "sales": 0},
@@ -319,5 +341,5 @@ def run():
             print(f"Created Item: {code}")
 
     frappe.db.commit()
-    print("All 47 Nova Beverages items successfully configured!")
+    print("All 51 Nova Beverages items successfully configured!")
 ```

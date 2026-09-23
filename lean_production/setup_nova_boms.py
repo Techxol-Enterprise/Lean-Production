@@ -154,7 +154,10 @@ def run():
             "uom": "Nos",
             "items": [
                 {"item_code": "INT-BULK-WATER", "qty": 19.0, "uom": "Litre"},
-                {"item_code": "RM-CAP-28MM", "qty": 1.0, "uom": "Nos"},
+                {"item_code": "RM-CAP-55MM", "qty": 1.0, "uom": "Nos"},
+                {"item_code": "RM-SEAL-19L", "qty": 1.0, "uom": "Nos"},
+                {"item_code": "RM-BAG-19L", "qty": 1.0, "uom": "Nos"},
+                {"item_code": "RM-LBL-REH-19L", "qty": 1.0, "uom": "Nos"},
             ]
         },
 
@@ -262,12 +265,33 @@ def run():
     for cfg in boms_config:
         item_code = cfg["item"]
 
-        # Deactivate any older BOMs for this item
-        old_boms = frappe.get_all("BOM", filters={"item": item_code, "docstatus": 1})
-        for ob in old_boms:
-            frappe.db.set_value("BOM", ob.name, {"is_default": 0, "is_active": 0})
+        # Check existing active BOMs
+        existing_boms = frappe.get_all("BOM", filters={"item": item_code, "docstatus": 1})
+        is_up_to_date = False
 
-        # Create new BOM
+        if existing_boms:
+            for eb in existing_boms:
+                bdoc = frappe.get_doc("BOM", eb.name)
+                # Check if components match
+                current_items = {d.item_code: (round(float(d.qty), 4), d.uom) for d in bdoc.items}
+                target_items = {c["item_code"]: (round(float(c["qty"]), 4), c["uom"]) for c in cfg["items"]}
+
+                if current_items == target_items and round(float(bdoc.quantity), 4) == round(float(cfg["quantity"]), 4):
+                    is_up_to_date = True
+                    frappe.db.set_value("BOM", bdoc.name, {"is_default": 1, "is_active": 1})
+                    frappe.db.set_value("Item", item_code, "default_bom", bdoc.name)
+                    print(f"BOM {bdoc.name} for {item_code} is already up to date.")
+                else:
+                    # Cancel and delete outdated BOM cleanly (no transactions exist)
+                    print(f"BOM {bdoc.name} for {item_code} is outdated. Cancelling and deleting...")
+                    if bdoc.docstatus == 1:
+                        bdoc.cancel()
+                    frappe.delete_doc("BOM", bdoc.name, force=True)
+
+        if is_up_to_date:
+            continue
+
+        # Create clean canonical BOM
         doc = frappe.new_doc("BOM")
         doc.item = item_code
         doc.quantity = cfg["quantity"]
@@ -293,7 +317,7 @@ def run():
 
         # Set as default on Item Master
         frappe.db.set_value("Item", item_code, "default_bom", doc.name)
-        print(f"Created and activated BOM {doc.name} for {item_code}")
+        print(f"Created and activated clean BOM {doc.name} for {item_code}")
 
     # Ensure all rates in BOMs are clean 0.00 until purchases are booked
     frappe.db.sql("UPDATE `tabBOM Item` SET rate=0.0, amount=0.0, base_rate=0.0, base_amount=0.0")

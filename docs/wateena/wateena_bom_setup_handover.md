@@ -26,8 +26,8 @@ graph TD
         INT_B05[INT-BTL-0.5L: 12 Nos] --> F05
         INT_B15[INT-BTL-1.5L: 6 Nos] --> F15
 
-        CAPS[RM-CAP-28MM] --> F19
-        CAPS --> F05
+        PKG19[19L Pack: 55mm Cap, Seal, Bag, Label] --> F19
+        CAPS[RM-CAP-28MM] --> F05
         CAPS --> F15
 
         LBL05[RM-LBL-0.5L: 12 Nos] --> F05
@@ -78,13 +78,16 @@ graph TD
 - **Base Output Quantity**: **1.0 Nos** (1 bottle)
 - **Rate of Materials Based On**: `Valuation Rate`
 - **Is Active**: Yes (`1`) | **Is Default**: Yes (`1`)
-- **Operational Logic**: Consumes 19 Litres of bulk purified water and 1 bottle sealing cap. The 19L polycarbonate bottle itself is tracked as a reusable asset via the `Customer Bottle Ledger`, so it is not consumed in the BOM.
+- **Operational Logic**: Consumes 19 Litres of bulk purified water, 1 commercial 55mm non-spill cap, 1 tamper-evident heat shrink neck seal, 1 protective transit dust bag, and 1 bottle sticker label. The 19L polycarbonate bottle itself is tracked as a reusable asset via the `Customer Bottle Ledger`, so it is not consumed in the BOM.
 
 #### Components Table:
 | # | Item Code | Item Name | Quantity | UOM | Rate | Amount |
 |:---:|---|---|:---:|:---:|:---:|:---:|
 | 1 | `INT-BULK-WATER` | Purified Mineral Water (Bulk) | **19.0** | Litre | 0.00 | 0.00 |
-| 2 | `RM-CAP-28MM` | 28mm Standard Plastic Cap | **1.0** | Nos | 0.00 | 0.00 |
+| 2 | `RM-CAP-55MM` | 55mm Non-Spill Cap (19L) | **1.0** | Nos | 0.00 | 0.00 |
+| 3 | `RM-SEAL-19L` | Heat Shrink Neck Seal - 19L | **1.0** | Nos | 0.00 | 0.00 |
+| 4 | `RM-BAG-19L` | Protective Dust Bag - 19L | **1.0** | Nos | 0.00 | 0.00 |
+| 5 | `RM-LBL-19L` | Bottle Label / Sticker - 19L | **1.0** | Nos | 0.00 | 0.00 |
 | | **Total BOM Cost** | | | | | **Rs 0.00** |
 
 ---
@@ -129,9 +132,9 @@ graph TD
 
 ## 4. Automated Python Provisioning Script for Production Server
 
-Save this script as `setup_production_boms.py` in your bench directory on the production server, then run:
+Save this script as `setup_wateena_boms.py` or run directly from the installed `lean_production` app:
 ```bash
-./env/bin/bench --site <site_name> execute setup_production_boms.run
+bench --site wateen execute lean_production.setup_wateena_boms.run
 ```
 
 ```python
@@ -161,7 +164,10 @@ def run():
             "uom": "Nos",
             "items": [
                 {"item_code": "INT-BULK-WATER", "qty": 19.0, "uom": "Litre"},
-                {"item_code": "RM-CAP-28MM", "qty": 1.0, "uom": "Nos"},
+                {"item_code": "RM-CAP-55MM", "qty": 1.0, "uom": "Nos"},
+                {"item_code": "RM-SEAL-19L", "qty": 1.0, "uom": "Nos"},
+                {"item_code": "RM-BAG-19L", "qty": 1.0, "uom": "Nos"},
+                {"item_code": "RM-LBL-19L", "qty": 1.0, "uom": "Nos"},
             ]
         },
         {
@@ -192,13 +198,34 @@ def run():
 
     for cfg in boms_config:
         item_code = cfg["item"]
-        
-        # Deactivate any older BOMs for this item
-        old_boms = frappe.get_all("BOM", filters={"item": item_code, "docstatus": 1})
-        for ob in old_boms:
-            frappe.db.set_value("BOM", ob.name, {"is_default": 0, "is_active": 0})
 
-        # Create new BOM
+        # Check existing active BOMs
+        existing_boms = frappe.get_all("BOM", filters={"item": item_code, "docstatus": 1})
+        is_up_to_date = False
+
+        if existing_boms:
+            for eb in existing_boms:
+                bdoc = frappe.get_doc("BOM", eb.name)
+                # Check if components match
+                current_items = {d.item_code: (round(float(d.qty), 4), d.uom) for d in bdoc.items}
+                target_items = {c["item_code"]: (round(float(c["qty"]), 4), c["uom"]) for c in cfg["items"]}
+
+                if current_items == target_items and round(float(bdoc.quantity), 4) == round(float(cfg["quantity"]), 4):
+                    is_up_to_date = True
+                    frappe.db.set_value("BOM", bdoc.name, {"is_default": 1, "is_active": 1})
+                    frappe.db.set_value("Item", item_code, "default_bom", bdoc.name)
+                    print(f"BOM {bdoc.name} for {item_code} is already up to date.")
+                else:
+                    # Cancel and delete outdated BOM cleanly (no transactions exist)
+                    print(f"BOM {bdoc.name} for {item_code} is outdated. Cancelling and deleting...")
+                    if bdoc.docstatus == 1:
+                        bdoc.cancel()
+                    frappe.delete_doc("BOM", bdoc.name, force=True)
+
+        if is_up_to_date:
+            continue
+
+        # Create clean canonical BOM
         doc = frappe.new_doc("BOM")
         doc.item = item_code
         doc.quantity = cfg["quantity"]
@@ -224,12 +251,12 @@ def run():
 
         # Set as default on Item Master
         frappe.db.set_value("Item", item_code, "default_bom", doc.name)
-        print(f"Created and activated BOM {doc.name} for {item_code}")
+        print(f"Created and activated clean BOM {doc.name} for {item_code}")
 
     # Ensure all rates in BOMs are clean 0.00 until purchases are booked
     frappe.db.sql("UPDATE `tabBOM Item` SET rate=0.0, amount=0.0, base_rate=0.0, base_amount=0.0")
     frappe.db.sql("UPDATE `tabBOM` SET raw_material_cost=0.0, total_cost=0.0, base_raw_material_cost=0.0, base_total_cost=0.0, rm_cost_as_per='Valuation Rate'")
 
     frappe.db.commit()
-    print("Stage 1 & Stage 3 BOMs successfully configured on production!")
+    print("Stage 1 & Stage 3 BOMs successfully configured on Wateena production!")
 ```
