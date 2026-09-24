@@ -1,7 +1,7 @@
 import frappe
 
 def run():
-    print("Beginning Wateena Item Master Setup (23 Items)...")
+    print("Beginning Wateena Item Master Setup (21 Items)...")
 
     # 1. Ensure required Item Groups exist
     item_groups = [
@@ -33,7 +33,7 @@ def run():
             u.insert(ignore_permissions=True)
             print(f"Created UOM: {uom}")
 
-    # 3. Master Items Definition (23 Total Items)
+    # 3. Master Items Definition (21 Total Items)
     items_to_create = [
         # Upstream Raw Materials & Bulk Water
         {"code": "RM-WATER", "name": "Raw Untreated Water", "group": "Raw Water", "uom": "Litre", "stock": 1, "purchase": 0, "sales": 0},
@@ -57,8 +57,6 @@ def run():
         # 19L Packaging Materials
         {"code": "RM-CAP-55MM", "name": "55mm Non-Spill Cap (19L)", "group": "Packaging Materials", "uom": "Nos", "stock": 1, "purchase": 1, "sales": 0},
         {"code": "RM-SEAL-19L", "name": "Heat Shrink Neck Seal - 19L", "group": "Packaging Materials", "uom": "Nos", "stock": 1, "purchase": 1, "sales": 0},
-        {"code": "RM-BAG-19L", "name": "Protective Dust Bag - 19L", "group": "Packaging Materials", "uom": "Nos", "stock": 1, "purchase": 1, "sales": 0},
-        {"code": "RM-LBL-19L", "name": "Bottle Label / Sticker - 19L", "group": "Packaging Materials", "uom": "Nos", "stock": 1, "purchase": 1, "sales": 0},
 
         # Empty Bottles
         {"code": "INT-BTL-0.5L", "name": "Empty PET Bottle - 500ml", "group": "Empty Bottles", "uom": "Nos", "stock": 1, "purchase": 0, "sales": 0},
@@ -123,5 +121,11 @@ def run():
             else:
                 print(f"Item already in desired state: {code}")
 
+    # Remove obsolete 19L packaging items if present
+    for obsolete_code in ["RM-BAG-19L", "RM-LBL-19L"]:
+        if frappe.db.exists("Item", obsolete_code):
+            frappe.delete_doc("Item", obsolete_code, force=True)
+            print(f"Deleted obsolete item: {obsolete_code}")
+
     frappe.db.commit()
-    print("All 23 Wateena Items successfully verified/provisioned!")
+    print("All 21 Wateena Items successfully verified/provisioned!")

@@ -1,7 +1,7 @@
 # Wateena Production Site — Item Master List & Setup Handover
 **Site:** `wateena` (`wateena.techxol.net`)  
 **Extracted / Generated At:** 2026-09-24  
-**Total Items:** 23  
+**Total Items:** 21  
 
 ---
 
@@ -24,14 +24,12 @@
 | 13 | `RM-WRAP-06X` | Shrink Wrap Film (6-pack) | Packaging Materials | Unit | Yes | Yes | No | 0.00 | Unit (1.0) | No |
 | 14 | `RM-CAP-55MM` | 55mm Non-Spill Cap (19L) | Packaging Materials | Nos | Yes | Yes | No | 0.00 | Nos (1.0) | No |
 | 15 | `RM-SEAL-19L` | Heat Shrink Neck Seal - 19L | Packaging Materials | Nos | Yes | Yes | No | 0.00 | Nos (1.0) | No |
-| 16 | `RM-BAG-19L` | Protective Dust Bag - 19L | Packaging Materials | Nos | Yes | Yes | No | 0.00 | Nos (1.0) | No |
-| 17 | `RM-LBL-19L` | Bottle Label / Sticker - 19L | Packaging Materials | Nos | Yes | Yes | No | 0.00 | Nos (1.0) | No |
-| 18 | `INT-BTL-0.5L` | Empty PET Bottle - 500ml | Empty Bottles | Nos | Yes | No | No | 0.00 | Nos (1.0) | No |
-| 19 | `INT-BTL-1.5L` | Empty PET Bottle - 1.5L | Empty Bottles | Nos | Yes | No | No | 0.00 | Nos (1.0) | No |
-| 20 | `FG-WATER-0.5L-12` | Wateena Water - 500ml x 12 Pack | Finished Goods | Pack | Yes | No | Yes | 0.00 | Pack (1.0) | No |
-| 21 | `FG-WATER-1.5L-06` | Wateena Water - 1.5L x 6 Pack | Finished Goods | Pack | Yes | No | Yes | 0.00 | Pack (1.0) | No |
-| 22 | `FG-19L-REFILL` | Wateena 19L (Refill) | Finished Goods | Nos | Yes | Yes | Yes | 0.00 | Nos (1.0) | No |
-| 23 | `19L-BOTTLE-DEPOSIT` | 19L Bottle Security Deposit | Services | Nos | No | Yes | Yes | 0.00 | Nos (1.0) | No |
+| 16 | `INT-BTL-0.5L` | Empty PET Bottle - 500ml | Empty Bottles | Nos | Yes | No | No | 0.00 | Nos (1.0) | No |
+| 17 | `INT-BTL-1.5L` | Empty PET Bottle - 1.5L | Empty Bottles | Nos | Yes | No | No | 0.00 | Nos (1.0) | No |
+| 18 | `FG-WATER-0.5L-12` | Wateena Water - 500ml x 12 Pack | Finished Goods | Pack | Yes | No | Yes | 0.00 | Pack (1.0) | No |
+| 19 | `FG-WATER-1.5L-06` | Wateena Water - 1.5L x 6 Pack | Finished Goods | Pack | Yes | No | Yes | 0.00 | Pack (1.0) | No |
+| 20 | `FG-19L-REFILL` | Wateena 19L (Refill) | Finished Goods | Nos | Yes | Yes | Yes | 0.00 | Nos (1.0) | No |
+| 21 | `19L-BOTTLE-DEPOSIT` | 19L Bottle Security Deposit | Services | Nos | No | Yes | Yes | 0.00 | Nos (1.0) | No |
 
 ---
 
@@ -62,12 +60,6 @@
 * **`RM-SEAL-19L`**: Heat Shrink Neck Seal - 19L
   * Stock UOM: `Nos` | Stock Item: Yes | Purchase Item: Yes
   * Purpose: Tamper-evident heat shrink PVC sleeve applied over the 55mm cap and neck.
-* **`RM-BAG-19L`**: Protective Dust Bag - 19L
-  * Stock UOM: `Nos` | Stock Item: Yes | Purchase Item: Yes
-  * Purpose: Polyethylene protective bag slipped over filled 19L bottle during vehicle transport.
-* **`RM-LBL-19L`**: Bottle Label / Sticker - 19L
-  * Stock UOM: `Nos` | Stock Item: Yes | Purchase Item: Yes
-  * Purpose: Wateena 19L brand sticker / collar date label.
 
 ### C. Chemicals & Mineral Salts (MIN / CHEM)
 * **`MIN-SODIUM`**: Sodium Mineral Salt

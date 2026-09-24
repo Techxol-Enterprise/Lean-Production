@@ -27,8 +27,6 @@ def run():
                 {"item_code": "INT-BULK-WATER", "qty": 19.0, "uom": "Litre"},
                 {"item_code": "RM-CAP-55MM", "qty": 1.0, "uom": "Nos"},
                 {"item_code": "RM-SEAL-19L", "qty": 1.0, "uom": "Nos"},
-                {"item_code": "RM-BAG-19L", "qty": 1.0, "uom": "Nos"},
-                {"item_code": "RM-LBL-19L", "qty": 1.0, "uom": "Nos"},
             ]
         },
         {
@@ -98,14 +96,17 @@ def run():
 
         for comp in cfg["items"]:
             comp_doc = frappe.get_doc("Item", comp["item_code"])
-            doc.append("items", {
+            item_row = {
                 "item_code": comp["item_code"],
                 "qty": comp["qty"],
                 "uom": comp["uom"],
                 "stock_uom": comp_doc.stock_uom,
                 "rate": 0.0,
                 "amount": 0.0
-            })
+            }
+            if comp_doc.default_bom:
+                item_row["bom_no"] = comp_doc.default_bom
+            doc.append("items", item_row)
 
         doc.insert(ignore_permissions=True)
         doc.submit()

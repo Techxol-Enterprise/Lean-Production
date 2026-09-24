@@ -78,7 +78,7 @@ graph TD
 - **Base Output Quantity**: **1.0 Nos** (1 bottle)
 - **Rate of Materials Based On**: `Valuation Rate`
 - **Is Active**: Yes (`1`) | **Is Default**: Yes (`1`)
-- **Operational Logic**: Consumes 19 Litres of bulk purified water, 1 commercial 55mm non-spill cap, 1 tamper-evident heat shrink neck seal, 1 protective transit dust bag, and 1 bottle sticker label. The 19L polycarbonate bottle itself is tracked as a reusable asset via the `Customer Bottle Ledger`, so it is not consumed in the BOM.
+- **Operational Logic**: Consumes 19 Litres of bulk purified water, 1 commercial 55mm non-spill cap, and 1 tamper-evident heat shrink neck seal. The 19L polycarbonate bottle itself is tracked as a reusable asset via the `Customer Bottle Ledger`, so it is not consumed in the BOM.
 
 #### Components Table:
 | # | Item Code | Item Name | Quantity | UOM | Rate | Amount |
@@ -86,8 +86,6 @@ graph TD
 | 1 | `INT-BULK-WATER` | Purified Mineral Water (Bulk) | **19.0** | Litre | 0.00 | 0.00 |
 | 2 | `RM-CAP-55MM` | 55mm Non-Spill Cap (19L) | **1.0** | Nos | 0.00 | 0.00 |
 | 3 | `RM-SEAL-19L` | Heat Shrink Neck Seal - 19L | **1.0** | Nos | 0.00 | 0.00 |
-| 4 | `RM-BAG-19L` | Protective Dust Bag - 19L | **1.0** | Nos | 0.00 | 0.00 |
-| 5 | `RM-LBL-19L` | Bottle Label / Sticker - 19L | **1.0** | Nos | 0.00 | 0.00 |
 | | **Total BOM Cost** | | | | | **Rs 0.00** |
 
 ---
@@ -166,8 +164,6 @@ def run():
                 {"item_code": "INT-BULK-WATER", "qty": 19.0, "uom": "Litre"},
                 {"item_code": "RM-CAP-55MM", "qty": 1.0, "uom": "Nos"},
                 {"item_code": "RM-SEAL-19L", "qty": 1.0, "uom": "Nos"},
-                {"item_code": "RM-BAG-19L", "qty": 1.0, "uom": "Nos"},
-                {"item_code": "RM-LBL-19L", "qty": 1.0, "uom": "Nos"},
             ]
         },
         {
