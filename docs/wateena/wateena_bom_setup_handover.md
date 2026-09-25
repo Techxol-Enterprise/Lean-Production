@@ -132,7 +132,7 @@ graph TD
 
 Save this script as `setup_wateena_boms.py` or run directly from the installed `lean_production` app:
 ```bash
-bench --site wateen execute lean_production.setup_wateena_boms.run
+bench --site wateena execute lean_production.setup_wateena_boms.run
 ```
 
 ```python

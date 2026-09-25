@@ -97,5 +97,5 @@
 
 Execute directly via Bench CLI:
 ```bash
-bench --site wateen execute lean_production.setup_wateena_items.run
+bench --site wateena execute lean_production.setup_wateena_items.run
 ```
