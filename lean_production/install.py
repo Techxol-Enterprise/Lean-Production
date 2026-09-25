@@ -1,7 +1,7 @@
 import frappe
 from lean_production.setup_item_groups import setup_lean_item_groups
 from lean_production.setup_roles import setup_lean_roles
-from lean_production.setup_bottle_tracking import add_custom_fields
+from lean_production.setup_bottle_tracking import add_custom_fields, configure_deposit_account
 
 def after_install():
     # 0. Provision and align Lean Production Item Group hierarchy
@@ -78,4 +78,5 @@ def after_migrate():
     setup_lean_item_groups()
     setup_lean_roles()
     add_custom_fields()
+    configure_deposit_account()
 
