@@ -1,6 +1,7 @@
 import frappe
 from lean_production.setup_item_groups import setup_lean_item_groups
 from lean_production.setup_roles import setup_lean_roles
+from lean_production.setup_bottle_tracking import add_custom_fields
 
 def after_install():
     # 0. Provision and align Lean Production Item Group hierarchy
@@ -8,6 +9,9 @@ def after_install():
 
     # 1. Provision Lean Production Manager Role and permissions
     setup_lean_roles()
+
+    # 2. Provision Bottle Tracking Custom Fields on Sales Invoice
+    add_custom_fields()
 
     # Attempt to find the default company or the first company
     company = frappe.db.get_single_value("Global Defaults", "default_company")
@@ -67,3 +71,11 @@ def after_install():
             "price_list_rate": 2000
         })
         price.insert(ignore_permissions=True)
+
+
+def after_migrate():
+    # Ensure custom fields, item groups, and roles are aligned after migration
+    setup_lean_item_groups()
+    setup_lean_roles()
+    add_custom_fields()
+

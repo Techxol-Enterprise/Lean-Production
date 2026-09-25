@@ -1,0 +1,41 @@
+[
+ {
+  "default": null,
+  "description": null,
+  "docstatus": 0,
+  "doctype": "Custom Field",
+  "dt": "Sales Invoice",
+  "fieldname": "bottle_tracking_section",
+  "fieldtype": "Section Break",
+  "insert_after": "items",
+  "label": "Bottle Tracking (19L)",
+  "module": "Lean Production",
+  "name": "Sales Invoice-bottle_tracking_section"
+ },
+ {
+  "default": null,
+  "description": null,
+  "docstatus": 0,
+  "doctype": "Custom Field",
+  "dt": "Sales Invoice",
+  "fieldname": "full_bottles_delivered",
+  "fieldtype": "Int",
+  "insert_after": "bottle_tracking_section",
+  "label": "Full Bottles Delivered (19L)",
+  "module": "Lean Production",
+  "name": "Sales Invoice-full_bottles_delivered"
+ },
+ {
+  "default": null,
+  "description": null,
+  "docstatus": 0,
+  "doctype": "Custom Field",
+  "dt": "Sales Invoice",
+  "fieldname": "empty_bottles_received",
+  "fieldtype": "Int",
+  "insert_after": "full_bottles_delivered",
+  "label": "Empty Bottles Received (19L)",
+  "module": "Lean Production",
+  "name": "Sales Invoice-empty_bottles_received"
+ }
+]

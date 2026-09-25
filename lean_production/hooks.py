@@ -289,5 +289,16 @@ doc_events = {
 
 
 after_install = "lean_production.install.after_install"
+after_migrate = "lean_production.install.after_migrate"
+
+fixtures = [
+    {
+        "dt": "Custom Field",
+        "filters": [
+            ["dt", "=", "Sales Invoice"],
+            ["fieldname", "in", ["bottle_tracking_section", "full_bottles_delivered", "empty_bottles_received"]]
+        ]
+    }
+]
 
 app_include_js = "/assets/lean_production/js/help_menu.js"

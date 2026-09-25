@@ -1,5 +1,5 @@
 import frappe
-from frappe.custom.doctype.custom_field.custom_field import create_custom_field
+from frappe.custom.doctype.custom_field.custom_field import create_custom_fields
 
 def create_doctype():
     if frappe.db.exists("DocType", "Customer Bottle Ledger"):
@@ -25,24 +25,31 @@ def create_doctype():
     doc.insert()
     
 def add_custom_fields():
-    create_custom_field("Sales Invoice", {
-        "fieldname": "bottle_tracking_section",
-        "label": "Bottle Tracking (19L)",
-        "fieldtype": "Section Break",
-        "insert_after": "items"
-    })
-    create_custom_field("Sales Invoice", {
-        "fieldname": "full_bottles_delivered",
-        "label": "Full Bottles Delivered (19L)",
-        "fieldtype": "Int",
-        "insert_after": "bottle_tracking_section"
-    })
-    create_custom_field("Sales Invoice", {
-        "fieldname": "empty_bottles_received",
-        "label": "Empty Bottles Received (19L)",
-        "fieldtype": "Int",
-        "insert_after": "full_bottles_delivered"
-    })
+    custom_fields = {
+        "Sales Invoice": [
+            {
+                "fieldname": "bottle_tracking_section",
+                "label": "Bottle Tracking (19L)",
+                "fieldtype": "Section Break",
+                "insert_after": "items",
+            },
+            {
+                "fieldname": "full_bottles_delivered",
+                "label": "Full Bottles Delivered (19L)",
+                "fieldtype": "Int",
+                "insert_after": "bottle_tracking_section",
+            },
+            {
+                "fieldname": "empty_bottles_received",
+                "label": "Empty Bottles Received (19L)",
+                "fieldtype": "Int",
+                "insert_after": "full_bottles_delivered",
+            },
+        ]
+    }
+    create_custom_fields(custom_fields, update=True)
+    frappe.clear_cache(doctype="Sales Invoice")
+    print("Bottle Tracking Custom Fields verified/created on Sales Invoice.")
 
 def setup():
     create_doctype()
