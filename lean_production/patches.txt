@@ -7,3 +7,4 @@
 lean_production.patches.v1_0.setup_lean_item_groups
 lean_production.patches.v1_0.setup_lean_production_manager
 lean_production.patches.v1_0.setup_bottle_tracking_custom_fields
+lean_production.patches.v1_0.enable_empty_bottles_purchase

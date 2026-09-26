@@ -137,22 +137,24 @@
 
 ### C. Intermediate / Semi-Finished Goods (INT)
 * **`INT-BULK-WATER`**: Purified Mineral Water (Bulk output of RO Purification)
-  * Stock UOM: `Litre` | Purchase: No | Sales: No
-* **Rehydrate Blown Bottles**:
-  * `INT-BTL-REH-0.5L-13.5G`: Made from `RM-PREFORM-PURE-13.5G` (1:1 piece ratio)
-  * `INT-BTL-REH-0.5L-15G`: Made from `RM-PREFORM-PURE-15G` (1:1 piece ratio)
-  * `INT-BTL-REH-1.5L-27G`: Made from `RM-PREFORM-PURE-27G` (1:1 piece ratio)
-  * `INT-BTL-REH-1.5L-30G`: Made from `RM-PREFORM-PURE-30G` (1:1 piece ratio)
-* **Hydrafina Pure Blown Bottles**:
-  * `INT-BTL-HYD-PURE-0.5L-13.5G`: Made from `RM-PREFORM-PURE-13.5G` (1:1 piece ratio)
-  * `INT-BTL-HYD-PURE-0.5L-15G`: Made from `RM-PREFORM-PURE-15G` (1:1 piece ratio)
-  * `INT-BTL-HYD-PURE-1.5L-27G`: Made from `RM-PREFORM-PURE-27G` (1:1 piece ratio)
-  * `INT-BTL-HYD-PURE-1.5L-30G`: Made from `RM-PREFORM-PURE-30G` (1:1 piece ratio)
-* **Hydrafina Mix Blown Bottles**:
-  * `INT-BTL-HYD-MIX-0.5L-13.5G`: Made from `RM-PREFORM-MIX-13.5G` (1:1 piece ratio)
-  * `INT-BTL-HYD-MIX-0.5L-15G`: Made from `RM-PREFORM-MIX-15G` (1:1 piece ratio)
-  * `INT-BTL-HYD-MIX-1.5L-27G`: Made from `RM-PREFORM-MIX-27G` (1:1 piece ratio)
-  * `INT-BTL-HYD-MIX-1.5L-30G`: Made from `RM-PREFORM-MIX-30G` (1:1 piece ratio)
+  * Stock UOM: `Litre` | Stock Item: Yes | Purchase: No | Sales: No | Default Valuation Rate: `0.50`
+* **Blown Bottles (Stock UOM: `Nos` | Stock Item: Yes | Purchase: Yes | Sales: No)**:
+  * *Supports dual-sourcing: In-house blow molding from preforms or direct market purchase via Purchase Receipt / Invoice during peak demand.*
+  * **Rehydrate Blown Bottles**:
+    * `INT-BTL-REH-0.5L-13.5G`: Made from `RM-PREFORM-PURE-13.5G` (1:1 piece ratio) or Market Purchase
+    * `INT-BTL-REH-0.5L-15G`: Made from `RM-PREFORM-PURE-15G` (1:1 piece ratio) or Market Purchase
+    * `INT-BTL-REH-1.5L-27G`: Made from `RM-PREFORM-PURE-27G` (1:1 piece ratio) or Market Purchase
+    * `INT-BTL-REH-1.5L-30G`: Made from `RM-PREFORM-PURE-30G` (1:1 piece ratio) or Market Purchase
+  * **Hydrafina Pure Blown Bottles**:
+    * `INT-BTL-HYD-PURE-0.5L-13.5G`: Made from `RM-PREFORM-PURE-13.5G` (1:1 piece ratio) or Market Purchase
+    * `INT-BTL-HYD-PURE-0.5L-15G`: Made from `RM-PREFORM-PURE-15G` (1:1 piece ratio) or Market Purchase
+    * `INT-BTL-HYD-PURE-1.5L-27G`: Made from `RM-PREFORM-PURE-27G` (1:1 piece ratio) or Market Purchase
+    * `INT-BTL-HYD-PURE-1.5L-30G`: Made from `RM-PREFORM-PURE-30G` (1:1 piece ratio) or Market Purchase
+  * **Hydrafina Mix Blown Bottles**:
+    * `INT-BTL-HYD-MIX-0.5L-13.5G`: Made from `RM-PREFORM-MIX-13.5G` (1:1 piece ratio) or Market Purchase
+    * `INT-BTL-HYD-MIX-0.5L-15G`: Made from `RM-PREFORM-MIX-15G` (1:1 piece ratio) or Market Purchase
+    * `INT-BTL-HYD-MIX-1.5L-27G`: Made from `RM-PREFORM-MIX-27G` (1:1 piece ratio) or Market Purchase
+    * `INT-BTL-HYD-MIX-1.5L-30G`: Made from `RM-PREFORM-MIX-30G` (1:1 piece ratio) or Market Purchase
 
 ---
 

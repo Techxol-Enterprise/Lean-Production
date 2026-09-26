@@ -46,7 +46,7 @@ def run():
         {"code": "MIN-MAGNESIUM", "name": "Magnesium Mineral Salt", "group": "Chemicals & Minerals", "uom": "Gram", "stock": 1, "purchase": 1, "sales": 0, "conversions": [("Kg", 1000.0)]},
         {"code": "MIN-SODIUM", "name": "Sodium Mineral Salt", "group": "Chemicals & Minerals", "uom": "Gram", "stock": 1, "purchase": 1, "sales": 0, "conversions": [("Kg", 1000.0)]},
         {"code": "CHEM-ANTISCALE", "name": "RO Antiscalant Liquid", "group": "Chemicals & Minerals", "uom": "Litre", "stock": 1, "purchase": 1, "sales": 0},
-        {"code": "INT-BULK-WATER", "name": "Purified Mineral Water (Bulk)", "group": "Bulk Purified Water", "uom": "Litre", "stock": 1, "purchase": 0, "sales": 0},
+        {"code": "INT-BULK-WATER", "name": "Purified Mineral Water (Bulk)", "group": "Bulk Purified Water", "uom": "Litre", "stock": 1, "purchase": 0, "sales": 0, "valuation_rate": 0.50},
         {"code": "RM-CAP-28MM", "name": "28mm Standard Plastic Cap", "group": "Packaging Materials", "uom": "Nos", "stock": 1, "purchase": 1, "sales": 0},
         {"code": "RM-WRAP-12X", "name": "Shrink Wrap Film (12-pack)", "group": "Packaging Materials", "uom": "Unit", "stock": 1, "purchase": 1, "sales": 0},
         {"code": "RM-WRAP-06X", "name": "Shrink Wrap Film (6-pack)", "group": "Packaging Materials", "uom": "Unit", "stock": 1, "purchase": 1, "sales": 0},
@@ -77,22 +77,22 @@ def run():
         {"code": "RM-BAG-19L", "name": "Protective Dust Bag - 19L", "group": "Packaging Materials", "uom": "Nos", "stock": 1, "purchase": 1, "sales": 0},
 
         # Empty Bottles - Rehydrate
-        {"code": "INT-BTL-REH-0.5L-13.5G", "name": "Empty PET Bottle - Nova Rehydrate - 500ml (13.5g)", "group": "Empty Bottles", "uom": "Nos", "stock": 1, "purchase": 0, "sales": 0},
-        {"code": "INT-BTL-REH-0.5L-15G", "name": "Empty PET Bottle - Nova Rehydrate - 500ml (15g)", "group": "Empty Bottles", "uom": "Nos", "stock": 1, "purchase": 0, "sales": 0},
-        {"code": "INT-BTL-REH-1.5L-27G", "name": "Empty PET Bottle - Nova Rehydrate - 1.5L (27g)", "group": "Empty Bottles", "uom": "Nos", "stock": 1, "purchase": 0, "sales": 0},
-        {"code": "INT-BTL-REH-1.5L-30G", "name": "Empty PET Bottle - Nova Rehydrate - 1.5L (30g)", "group": "Empty Bottles", "uom": "Nos", "stock": 1, "purchase": 0, "sales": 0},
+        {"code": "INT-BTL-REH-0.5L-13.5G", "name": "Empty PET Bottle - Nova Rehydrate - 500ml (13.5g)", "group": "Empty Bottles", "uom": "Nos", "stock": 1, "purchase": 1, "sales": 0},
+        {"code": "INT-BTL-REH-0.5L-15G", "name": "Empty PET Bottle - Nova Rehydrate - 500ml (15g)", "group": "Empty Bottles", "uom": "Nos", "stock": 1, "purchase": 1, "sales": 0},
+        {"code": "INT-BTL-REH-1.5L-27G", "name": "Empty PET Bottle - Nova Rehydrate - 1.5L (27g)", "group": "Empty Bottles", "uom": "Nos", "stock": 1, "purchase": 1, "sales": 0},
+        {"code": "INT-BTL-REH-1.5L-30G", "name": "Empty PET Bottle - Nova Rehydrate - 1.5L (30g)", "group": "Empty Bottles", "uom": "Nos", "stock": 1, "purchase": 1, "sales": 0},
 
         # Empty Bottles - Hydrafina Pure
-        {"code": "INT-BTL-HYD-PURE-0.5L-13.5G", "name": "Empty PET Bottle - Nova Hydrafina Pure - 500ml (13.5g)", "group": "Empty Bottles", "uom": "Nos", "stock": 1, "purchase": 0, "sales": 0},
-        {"code": "INT-BTL-HYD-PURE-0.5L-15G", "name": "Empty PET Bottle - Nova Hydrafina Pure - 500ml (15g)", "group": "Empty Bottles", "uom": "Nos", "stock": 1, "purchase": 0, "sales": 0},
-        {"code": "INT-BTL-HYD-PURE-1.5L-27G", "name": "Empty PET Bottle - Nova Hydrafina Pure - 1.5L (27g)", "group": "Empty Bottles", "uom": "Nos", "stock": 1, "purchase": 0, "sales": 0},
-        {"code": "INT-BTL-HYD-PURE-1.5L-30G", "name": "Empty PET Bottle - Nova Hydrafina Pure - 1.5L (30g)", "group": "Empty Bottles", "uom": "Nos", "stock": 1, "purchase": 0, "sales": 0},
+        {"code": "INT-BTL-HYD-PURE-0.5L-13.5G", "name": "Empty PET Bottle - Nova Hydrafina Pure - 500ml (13.5g)", "group": "Empty Bottles", "uom": "Nos", "stock": 1, "purchase": 1, "sales": 0},
+        {"code": "INT-BTL-HYD-PURE-0.5L-15G", "name": "Empty PET Bottle - Nova Hydrafina Pure - 500ml (15g)", "group": "Empty Bottles", "uom": "Nos", "stock": 1, "purchase": 1, "sales": 0},
+        {"code": "INT-BTL-HYD-PURE-1.5L-27G", "name": "Empty PET Bottle - Nova Hydrafina Pure - 1.5L (27g)", "group": "Empty Bottles", "uom": "Nos", "stock": 1, "purchase": 1, "sales": 0},
+        {"code": "INT-BTL-HYD-PURE-1.5L-30G", "name": "Empty PET Bottle - Nova Hydrafina Pure - 1.5L (30g)", "group": "Empty Bottles", "uom": "Nos", "stock": 1, "purchase": 1, "sales": 0},
 
         # Empty Bottles - Hydrafina Mix
-        {"code": "INT-BTL-HYD-MIX-0.5L-13.5G", "name": "Empty PET Bottle - Nova Hydrafina Mix - 500ml (13.5g)", "group": "Empty Bottles", "uom": "Nos", "stock": 1, "purchase": 0, "sales": 0},
-        {"code": "INT-BTL-HYD-MIX-0.5L-15G", "name": "Empty PET Bottle - Nova Hydrafina Mix - 500ml (15g)", "group": "Empty Bottles", "uom": "Nos", "stock": 1, "purchase": 0, "sales": 0},
-        {"code": "INT-BTL-HYD-MIX-1.5L-27G", "name": "Empty PET Bottle - Nova Hydrafina Mix - 1.5L (27g)", "group": "Empty Bottles", "uom": "Nos", "stock": 1, "purchase": 0, "sales": 0},
-        {"code": "INT-BTL-HYD-MIX-1.5L-30G", "name": "Empty PET Bottle - Nova Hydrafina Mix - 1.5L (30g)", "group": "Empty Bottles", "uom": "Nos", "stock": 1, "purchase": 0, "sales": 0},
+        {"code": "INT-BTL-HYD-MIX-0.5L-13.5G", "name": "Empty PET Bottle - Nova Hydrafina Mix - 500ml (13.5g)", "group": "Empty Bottles", "uom": "Nos", "stock": 1, "purchase": 1, "sales": 0},
+        {"code": "INT-BTL-HYD-MIX-0.5L-15G", "name": "Empty PET Bottle - Nova Hydrafina Mix - 500ml (15g)", "group": "Empty Bottles", "uom": "Nos", "stock": 1, "purchase": 1, "sales": 0},
+        {"code": "INT-BTL-HYD-MIX-1.5L-27G", "name": "Empty PET Bottle - Nova Hydrafina Mix - 1.5L (27g)", "group": "Empty Bottles", "uom": "Nos", "stock": 1, "purchase": 1, "sales": 0},
+        {"code": "INT-BTL-HYD-MIX-1.5L-30G", "name": "Empty PET Bottle - Nova Hydrafina Mix - 1.5L (30g)", "group": "Empty Bottles", "uom": "Nos", "stock": 1, "purchase": 1, "sales": 0},
 
         # Finished Goods - Rehydrate
         {"code": "FG-REH-WATER-0.5L-12-13.5G", "name": "Nova Beverages - Rehydrate Water - PL - 500ml x 12 Pack", "group": "Finished Goods", "uom": "Pack", "stock": 1, "purchase": 0, "sales": 1},
@@ -124,6 +124,8 @@ def run():
             doc.is_stock_item = item_data["stock"]
             doc.is_purchase_item = item_data["purchase"]
             doc.is_sales_item = item_data["sales"]
+            if "valuation_rate" in item_data and flt(doc.valuation_rate) <= 0:
+                doc.valuation_rate = item_data["valuation_rate"]
             doc.save(ignore_permissions=True)
             print(f"Updated Item: {code}")
         else:
@@ -135,7 +137,7 @@ def run():
             doc.is_stock_item = item_data["stock"]
             doc.is_purchase_item = item_data["purchase"]
             doc.is_sales_item = item_data["sales"]
-            doc.valuation_rate = 0.0
+            doc.valuation_rate = item_data.get("valuation_rate", 0.0)
 
             if "conversions" in item_data:
                 for uom_name, factor in item_data["conversions"]:

@@ -73,11 +73,11 @@
 
 ### D. Intermediate / Semi-Finished Goods (INT)
 * **`INT-BULK-WATER`**: Purified Mineral Water (Bulk output of RO Purification)
-  * Stock UOM: `Litre` | Stock Item: Yes | Purchase: No | Sales: No
+  * Stock UOM: `Litre` | Stock Item: Yes | Purchase: No | Sales: No | Default Valuation Rate: `0.50`
 * **`INT-BTL-0.5L`**: Empty PET Bottle - 500ml
-  * Stock UOM: `Nos` | Stock Item: Yes | Purchase: No | Sales: No
+  * Stock UOM: `Nos` | Stock Item: Yes | Purchase: Yes (In-house blowing or Market Purchase) | Sales: No
 * **`INT-BTL-1.5L`**: Empty PET Bottle - 1.5L
-  * Stock UOM: `Nos` | Stock Item: Yes | Purchase: No | Sales: No
+  * Stock UOM: `Nos` | Stock Item: Yes | Purchase: Yes (In-house blowing or Market Purchase) | Sales: No
 
 ### E. Finished Goods (FG)
 * **`FG-19L-REFILL`**: Wateena 19L (Refill)

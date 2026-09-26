@@ -1,7 +1,7 @@
 import frappe
 from frappe.utils import flt
 from erpnext.stock.get_item_details import get_conversion_factor
-from erpnext.stock.utils import get_stock_balance
+from erpnext.stock.utils import get_stock_balance, get_incoming_rate
 
 
 class BOMMaterialList(list):
@@ -176,6 +176,54 @@ def get_bom_material_details(item_code=None, bom_no=None, total_qty=1.0, company
         })
 
     return result_items
+
+
+def resolve_material_unit_rate(item_code, warehouse, company, posting_date=None, posting_time=None, transfer_qty=0):
+    """
+    Dynamically resolves incoming valuation rate for consumed materials in MES stock entries.
+    Resolution waterfall:
+    1. Warehouse valuation rate via get_incoming_rate (FIFO/moving average based on current stock balance)
+    2. Item master valuation_rate (tabItem.valuation_rate)
+    3. Item master standard_rate (tabItem.standard_rate)
+    4. Price List rate from 'Standard Buying' (Item Price)
+    5. Fallback 0.0 (strictly allowed only for RM-WATER / unmetered groundwater or zero-cost items)
+    """
+    rate = 0.0
+    try:
+        args = {
+            "item_code": item_code,
+            "warehouse": warehouse,
+            "company": company,
+            "qty": transfer_qty or 1.0
+        }
+        if posting_date:
+            args["posting_date"] = posting_date
+        if posting_time:
+            args["posting_time"] = posting_time
+
+        rate = flt(get_incoming_rate(args, raise_error_if_no_rate=False))
+    except Exception:
+        rate = 0.0
+
+    if rate > 0.0:
+        return rate
+
+    # Fallback 1: Item Master Valuation Rate
+    item_val = flt(frappe.db.get_value("Item", item_code, "valuation_rate"))
+    if item_val > 0.0:
+        return item_val
+
+    # Fallback 2: Item Master Standard Rate
+    std_rate = flt(frappe.db.get_value("Item", item_code, "standard_rate"))
+    if std_rate > 0.0:
+        return std_rate
+
+    # Fallback 3: Buying Item Price
+    price = frappe.db.get_value("Item Price", {"item_code": item_code, "buying": 1}, "price_list_rate")
+    if price and flt(price) > 0.0:
+        return flt(price)
+
+    return 0.0
 
 
 def create_manufacture_stock_entry(doc, method):
@@ -404,6 +452,8 @@ def create_manufacture_stock_entry(doc, method):
     se._precision["items"] = frappe._dict(transfer_qty=9, qty=9)
 
     # 7. Consume Materials from Child Table (or fallback BOM explosion)
+    total_outgoing_cost = 0.0
+
     if consumption_rows:
         for row in consumption_rows:
             req_qty = flt(row.get("required_qty") if isinstance(row, dict) else getattr(row, "required_qty", 0))
@@ -424,6 +474,17 @@ def create_manufacture_stock_entry(doc, method):
                 conv = flt(conv_data.get("conversion_factor")) or 1.0
 
             transfer_qty = req_qty * conv
+            mat_rate = resolve_material_unit_rate(
+                item_code=item_code,
+                warehouse=src_wh,
+                company=doc.company,
+                posting_date=doc.posting_date,
+                posting_time=getattr(doc, "posting_time", None) or frappe.utils.nowtime(),
+                transfer_qty=transfer_qty
+            )
+            row_amount = flt(transfer_qty * mat_rate)
+            total_outgoing_cost += row_amount
+
             se.append("items", {
                 "item_code": item_code,
                 "s_warehouse": src_wh,
@@ -432,7 +493,10 @@ def create_manufacture_stock_entry(doc, method):
                 "stock_uom": stock_uom,
                 "conversion_factor": conv,
                 "transfer_qty": transfer_qty,
-                "allow_zero_valuation_rate": 1
+                "basic_rate": mat_rate,
+                "basic_amount": row_amount,
+                "set_basic_rate_manually": 1 if mat_rate > 0 else 0,
+                "allow_zero_valuation_rate": 1 if mat_rate <= 0 else 0
             })
     else:
         # Fallback to BOM explosion for backward compatibility
@@ -471,6 +535,17 @@ def create_manufacture_stock_entry(doc, method):
             stock_uom = rm["stock_uom"]
             conv = rm["conversion_factor"]
             transfer_qty = flt(rm["qty"]) * conv
+            mat_rate = resolve_material_unit_rate(
+                item_code=rm["item_code"],
+                warehouse=s_wh,
+                company=doc.company,
+                posting_date=doc.posting_date,
+                posting_time=getattr(doc, "posting_time", None) or frappe.utils.nowtime(),
+                transfer_qty=transfer_qty
+            )
+            row_amount = flt(transfer_qty * mat_rate)
+            total_outgoing_cost += row_amount
+
             se.append("items", {
                 "item_code": rm["item_code"],
                 "s_warehouse": s_wh,
@@ -479,10 +554,13 @@ def create_manufacture_stock_entry(doc, method):
                 "stock_uom": stock_uom,
                 "conversion_factor": conv,
                 "transfer_qty": transfer_qty,
-                "allow_zero_valuation_rate": 1
+                "basic_rate": mat_rate,
+                "basic_amount": row_amount,
+                "set_basic_rate_manually": 1 if mat_rate > 0 else 0,
+                "allow_zero_valuation_rate": 1 if mat_rate <= 0 else 0
             })
 
-    # 7. Append Finished Good row (STRICTLY Good Qty)
+    # 8. Append Finished Good row (STRICTLY Good Qty)
     fg_uom = frappe.db.get_value("Item", fg_item, "stock_uom")
     fg_batch = None
     if getattr(doc, "batch_no", None):
@@ -495,7 +573,18 @@ def create_manufacture_stock_entry(doc, method):
                 b_doc.insert(ignore_permissions=True)
             fg_batch = doc.batch_no
 
-    se.append("items", {
+    # Calculate Finished Good Valuation Rate
+    fg_unit_rate = 0.0
+    if good_qty > 0 and total_outgoing_cost > 0:
+        fg_unit_rate = flt(total_outgoing_cost / good_qty, 6)
+
+    # Fallback to Item valuation_rate or standard_rate if fg_unit_rate is 0
+    if fg_unit_rate <= 0:
+        fg_unit_rate = flt(frappe.db.get_value("Item", fg_item, "valuation_rate")) or flt(frappe.db.get_value("Item", fg_item, "standard_rate"))
+
+    fg_amount = flt(good_qty * fg_unit_rate, 2)
+
+    fg_row = {
         "item_code": fg_item,
         "t_warehouse": target_wh,
         "qty": good_qty,
@@ -503,10 +592,16 @@ def create_manufacture_stock_entry(doc, method):
         "stock_uom": fg_uom,
         "conversion_factor": 1.0,
         "transfer_qty": good_qty,
-        "allow_zero_valuation_rate": 1,
+        "basic_rate": fg_unit_rate,
+        "basic_amount": fg_amount,
+        "set_basic_rate_manually": 1 if fg_unit_rate > 0 else 0,
         "is_finished_item": 1,
         "batch_no": fg_batch
-    })
+    }
+    if fg_unit_rate <= 0:
+        fg_row["allow_zero_valuation_rate"] = 1
+
+    se.append("items", fg_row)
 
     # 8. Set Remarks with MES Metadata
     remarks = [f"{doc.doctype}: {doc.name}"]

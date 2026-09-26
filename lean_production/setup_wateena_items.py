@@ -41,7 +41,7 @@ def run():
         {"code": "MIN-MAGNESIUM", "name": "Magnesium Mineral Salt", "group": "Chemicals & Minerals", "uom": "Gram", "stock": 1, "purchase": 1, "sales": 0, "conversions": [("Kg", 1000.0)]},
         {"code": "MIN-SODIUM", "name": "Sodium Mineral Salt", "group": "Chemicals & Minerals", "uom": "Gram", "stock": 1, "purchase": 1, "sales": 0, "conversions": [("Kg", 1000.0)]},
         {"code": "CHEM-ANTISCALE", "name": "RO Antiscalant Liquid", "group": "Chemicals & Minerals", "uom": "Litre", "stock": 1, "purchase": 1, "sales": 0},
-        {"code": "INT-BULK-WATER", "name": "Purified Mineral Water (Bulk)", "group": "Bulk Purified Water", "uom": "Litre", "stock": 1, "purchase": 0, "sales": 0},
+        {"code": "INT-BULK-WATER", "name": "Purified Mineral Water (Bulk)", "group": "Bulk Purified Water", "uom": "Litre", "stock": 1, "purchase": 0, "sales": 0, "valuation_rate": 0.50},
 
         # Resins & Preforms
         {"code": "RM-PREFORM-15G", "name": "PET Preform - 15g (for 500ml)", "group": "Resins & Preforms", "uom": "Kg", "stock": 1, "purchase": 1, "sales": 0},
@@ -59,8 +59,8 @@ def run():
         {"code": "RM-SEAL-19L", "name": "Heat Shrink Neck Seal - 19L", "group": "Packaging Materials", "uom": "Nos", "stock": 1, "purchase": 1, "sales": 0},
 
         # Empty Bottles
-        {"code": "INT-BTL-0.5L", "name": "Empty PET Bottle - 500ml", "group": "Empty Bottles", "uom": "Nos", "stock": 1, "purchase": 0, "sales": 0},
-        {"code": "INT-BTL-1.5L", "name": "Empty PET Bottle - 1.5L", "group": "Empty Bottles", "uom": "Nos", "stock": 1, "purchase": 0, "sales": 0},
+        {"code": "INT-BTL-0.5L", "name": "Empty PET Bottle - 500ml", "group": "Empty Bottles", "uom": "Nos", "stock": 1, "purchase": 1, "sales": 0},
+        {"code": "INT-BTL-1.5L", "name": "Empty PET Bottle - 1.5L", "group": "Empty Bottles", "uom": "Nos", "stock": 1, "purchase": 1, "sales": 0},
 
         # Finished Goods
         {"code": "FG-WATER-0.5L-12", "name": "Wateena Water - 500ml x 12 Pack", "group": "Finished Goods", "uom": "Pack", "stock": 1, "purchase": 0, "sales": 1},
@@ -82,7 +82,7 @@ def run():
             doc.is_stock_item = item["stock"]
             doc.is_purchase_item = item["purchase"]
             doc.is_sales_item = item["sales"]
-            doc.valuation_rate = 0.0
+            doc.valuation_rate = item.get("valuation_rate", 0.0)
 
             if "conversions" in item:
                 for conv_uom, factor in item["conversions"]:
@@ -113,6 +113,9 @@ def run():
                 modified = True
             if doc.is_sales_item != item["sales"]:
                 doc.is_sales_item = item["sales"]
+                modified = True
+            if "valuation_rate" in item and flt(doc.valuation_rate) <= 0:
+                doc.valuation_rate = item["valuation_rate"]
                 modified = True
 
             if modified:
