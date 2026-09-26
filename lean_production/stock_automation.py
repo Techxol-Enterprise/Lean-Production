@@ -628,17 +628,49 @@ def create_manufacture_stock_entry(doc, method):
     frappe.msgprint(f"Stock Entry {se.name} dynamically generated from BOM {doc.bom_no}.")
 
 
-def cancel_linked_stock_entry(doc, method):
+def cancel_linked_stock_entry(doc, method=None):
     """
     Hooked into on_cancel for Water Purification, Blow Molding, and Filling Entry.
-    Cancels the linked Stock Entry automatically.
+    Cancels the linked Manufacturing Stock Entry automatically and restores raw material stock.
     """
     stock_entry_id = getattr(doc, "stock_entry", None) or frappe.db.get_value(doc.doctype, doc.name, "stock_entry")
-    if stock_entry_id and frappe.db.exists("Stock Entry", stock_entry_id):
-        se = frappe.get_doc("Stock Entry", stock_entry_id)
-        if se.docstatus == 1:
-            se.cancel()
-            frappe.msgprint(f"Linked Stock Entry {se.name} cancelled automatically.")
+    if not stock_entry_id or not frappe.db.exists("Stock Entry", stock_entry_id):
+        return
+
+    se = frappe.get_doc("Stock Entry", stock_entry_id)
+    if se.docstatus != 1:
+        return
+
+    # 1. Downstream Consumption Guard: check if reversal would breach negative stock
+    allow_negative = frappe.db.get_single_value("Stock Settings", "allow_negative_stock")
+    if not allow_negative:
+        for item in se.items:
+            if item.is_finished_item or (item.t_warehouse and not item.s_warehouse):
+                current_stock = get_stock_balance(item.item_code, item.t_warehouse)
+                if flt(current_stock) < flt(item.transfer_qty):
+                    frappe.throw(
+                        frappe._(
+                            "Cannot cancel <strong>{0} {1}</strong>: The finished item <strong>{2}</strong> produced by this entry "
+                            "has already been consumed or dispatched from <strong>{3}</strong> (Available balance: {4} {5}, Required to reverse: {6} {5}).<br><br>"
+                            "Please cancel downstream consumption entries or shipments before cancelling this entry."
+                        ).format(
+                            doc.doctype, doc.name, item.item_code, item.t_warehouse,
+                            flt(current_stock), item.stock_uom or "", flt(item.transfer_qty)
+                        ),
+                        title=frappe._("Downstream Stock Already Consumed")
+                    )
+
+    # 2. Cancel Stock Entry with Permission Bypass
+    se.flags.ignore_permissions = True
+    se.cancel()
+
+    # 3. Audit Trail & User Notification
+    se.add_comment("Comment", text=frappe._("Automatically cancelled due to cancellation of {0}: {1}").format(doc.doctype, doc.name))
+    frappe.msgprint(
+        frappe._("Linked Manufacturing Stock Entry <strong>{0}</strong> has been cancelled automatically. Raw material stock has been restored.").format(se.name),
+        alert=True,
+        indicator="orange"
+    )
 
 @frappe.whitelist()
 @frappe.validate_and_sanitize_search_inputs
