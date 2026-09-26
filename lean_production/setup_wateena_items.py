@@ -1,4 +1,5 @@
 import frappe
+from frappe.utils import flt
 
 def run():
     print("Beginning Wateena Item Master Setup (21 Items)...")
