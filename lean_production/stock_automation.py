@@ -201,7 +201,7 @@ def resolve_material_unit_rate(item_code, warehouse, company, posting_date=None,
         if posting_time:
             args["posting_time"] = posting_time
 
-        rate = flt(get_incoming_rate(args, raise_error_if_no_rate=False))
+        rate = flt(get_incoming_rate(args, raise_error_if_no_rate=False, fallbacks=False))
     except Exception:
         rate = 0.0
 
@@ -218,10 +218,23 @@ def resolve_material_unit_rate(item_code, warehouse, company, posting_date=None,
     if std_rate > 0.0:
         return std_rate
 
-    # Fallback 3: Buying Item Price
-    price = frappe.db.get_value("Item Price", {"item_code": item_code, "buying": 1}, "price_list_rate")
-    if price and flt(price) > 0.0:
-        return flt(price)
+    # Fallback 3: Buying Item Price (properly normalized to stock_uom)
+    ip_data = frappe.db.get_value(
+        "Item Price",
+        {"item_code": item_code, "buying": 1},
+        ["price_list_rate", "uom"],
+        as_dict=True
+    )
+    if ip_data and flt(ip_data.price_list_rate) > 0.0:
+        price = flt(ip_data.price_list_rate)
+        ip_uom = ip_data.uom
+        stock_uom = frappe.db.get_value("Item", item_code, "stock_uom")
+        if ip_uom and stock_uom and ip_uom != stock_uom:
+            conv_data = get_conversion_factor(item_code, ip_uom)
+            conv = flt(conv_data.get("conversion_factor")) or 1.0
+            if conv > 0:
+                price = price / conv
+        return price
 
     return 0.0
 
@@ -442,6 +455,9 @@ def create_manufacture_stock_entry(doc, method):
     se.company = doc.company
     se.posting_date = doc.posting_date
     se.posting_time = getattr(doc, "posting_time", None) or frappe.utils.nowtime()
+    # Required: TransactionBase.validate_posting_time() overwrites posting_date and
+    # posting_time with the current datetime on save unless set_posting_time = 1.
+    se.set_posting_time = 1
     se.from_bom = 1
     se.bom_no = doc.bom_no
     se.to_warehouse = target_wh
